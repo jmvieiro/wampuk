@@ -12,6 +12,11 @@
  */
  /*JMV*/
 :root {
+  --bs-morado: #9E005D;
+  --bs-morado-claro: rgba(158, 0, 93, 0.13);
+  --bs-cyan-claro: rgba(0, 255, 255, 0.19);
+  --bs-violeta-claro: rgba(95, 118, 177, 0.24);
+  --bs-gray1: #333333;
   --bs-wampuk: #5f76b1;
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -7804,10 +7809,41 @@ JMV
   --bs-text-opacity: 1;
 }
 
+.bg-morado {
+  --bs-bg-opacity: .1;
+  background-color: var(--bs-morado) !important;
+}
+
+.text-morado {
+  color: var(--bs-morado) !important;
+}
+
+
+.bg-morado-claro {
+  --bs-bg-opacity: .1;
+  background-color: var(--bs-morado-claro) !important;
+}
+
+.bg-gray1 {
+  --bs-bg-opacity: .1;
+  background-color: var(--bs-gray1) !important;
+}
+
+.bg-cyan-claro {
+  --bs-bg-opacity: .1;
+  background-color: var(--bs-cyan-claro) !important;
+}
+
+.bg-violeta-claro {
+  --bs-bg-opacity: .1;
+  background-color: var(--bs-violeta-claro) !important;
+}
+
 .bg-wampuk {
   --bs-bg-opacity: .1;
   background-color: var(--bs-wampuk) !important;
 }
+
 
 .bg-primary {
   --bs-bg-opacity: 1;
@@ -11445,7 +11481,7 @@ html {
   JMV
   padding-top: calc(6rem + 74px);
   padding-bottom: 6rem; */
-  padding-top: calc(6rem + 34px);
+  padding-top: calc(6rem);
   padding-bottom: calc(6rem - 40px);
 }
 .masthead .masthead-heading {
@@ -11465,7 +11501,7 @@ html {
     JMV
     padding-top: calc(6rem + 104px);
     padding-bottom: 6rem; */
-    padding-top: calc(6rem + 75px);
+    padding-top: calc(6rem );
     padding-bottom: calc(6rem - 35px);
   }
   .masthead .masthead-heading {

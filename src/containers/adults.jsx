@@ -11,8 +11,8 @@ const Adults = () => {
   return (
     <>
       <Header adult={true} />
-      <Main />
-      <Footer adult={true} />
+      <Main adult={true} />
+      <Footer />
     </>
   );
 };

@@ -1,28 +1,30 @@
-import LogoDivider from "./logoDivider";
 import React from "react";
 
-const Card = ({
-  title,
-  text,
-  action,
-  titleCenter = false,
-  divider = false,
-}) => {
+const Card = ({ title, text, img, titleCenter = false }) => {
   return (
     <div
-      className={`container d-flex flex-column shadow p-5 mb-4 mt-1 rounded-3 ${
+      className={`container bg-white shadow p-3 pt-4 pb-4 mb-4 mt-1 rounded-3 ${
         titleCenter ? "align-items-center" : ""
       }`}
-      style={{ width: "80%" }}
+      style={{ width: "95%" }}
     >
-      <h1 className={`masthead-heading  ${divider ? "mb-1" : "mb-4"}`}>
-        {title}
-      </h1>
-      {divider && <LogoDivider />}
-      <p className="masthead-subheading font-weight-light">{text}</p>
-      <p className="masthead-subheading font-weight-light mb-0 text-uppercase">
-        {action}
-      </p>
+      <div className="container">
+        <div className="row">
+          <div className="col-4 col-sm-12 text-center mb-4">
+            <img
+              src={img}
+              title="Wampuk"
+              alt="Wampuk"
+              style={{ width: "90%", maxWidth: 120 }}
+              className=""
+            />
+          </div>
+          <div className="col-8 col-sm-12 text-center">
+            <h1 className={`masthead-heading mb-3`}>{title}</h1>
+            <p className="masthead-subheading">{text}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

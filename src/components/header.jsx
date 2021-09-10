@@ -13,7 +13,7 @@ const Header = ({ adult = false }) => {
       }`}
       id="mainNav"
     >
-      <div className="container">
+      <div className="container  text-black">
         <Link to={"/"} className="navbar-brand">
           <img
             src={adult ? logo_wampuk_blanco : logo_wampuk_sf}
@@ -23,7 +23,7 @@ const Header = ({ adult = false }) => {
           />
         </Link>
         <button
-          className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+          className="navbar-toggler text-uppercase font-weight-bold fw-bold text-white rounded"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarResponsive"
@@ -31,8 +31,9 @@ const Header = ({ adult = false }) => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          Menu
-          <i className="fas fa-bars"></i>
+          &nbsp;
+          <i className="fas fa-bars  text-black" style={{ fontSize: 35 }}></i>
+          &nbsp;
         </button>
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav ms-auto">
@@ -91,7 +92,7 @@ const Header = ({ adult = false }) => {
               <>
                 <li className="nav-item mx-0 mx-lg-1">
                   <a
-                    className="nav-link py-2 px-0 px-lg-2 rounded"
+                    className="nav-link py-2 px-0 px-lg-2 rounded text-black"
                     href="#contact"
                   >
                     Explorar
@@ -100,14 +101,14 @@ const Header = ({ adult = false }) => {
                 <li className="nav-item mx-0 mx-lg-1">
                   <Link
                     to={"/adults"}
-                    className="nav-link py-2 px-0 px-lg-2 rounded"
+                    className="nav-link py-2 px-0 px-lg-2 rounded text-black"
                   >
                     Sección Adultos
                   </Link>
                 </li>
                 <li className="nav-item mx-0 mx-lg-1">
                   <a
-                    className="nav-link py-2 px-0 px-lg-2 rounded"
+                    className="nav-link py-2 px-0 px-lg-2 rounded text-black"
                     href="#contact"
                   >
                     Ingresar

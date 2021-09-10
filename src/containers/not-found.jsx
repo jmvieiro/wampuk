@@ -24,7 +24,7 @@ const NotFound = () => {
           </button>
         </Link>
       </header>
-      <Footer adult={true} />
+      <Footer />
     </>
   );
 };
