@@ -15,7 +15,7 @@ const Landing = () => {
       <div
         class="row"
         style={{
-          width: "100%",
+          width: "102%",
           position: "absolute",
           top: "40%",
           height: "60vh",
@@ -34,7 +34,7 @@ const Landing = () => {
       <div
         class="row"
         style={{
-          width: "100%",
+          width: "102%",
           position: "absolute",
           top: "40%",
           height: "60vh",
