@@ -56,14 +56,14 @@ const Landing = () => {
           zIndex: 99,
         }}
       >
-        <div class="col-12 text-center pt-5" style={{ height: "50vh" }}>
+        <div class="col-12 text-center pt-4" style={{ height: "50vh" }}>
           <img
             src={logo_wampuk_blanco}
             title="Sección Adultos"
             alt="Sección Adultos"
             style={{
               borderRadius: "50%",
-              maxWidth: 300,
+              maxWidth: 250,
               backgroundColor: "rgba(0, 0, 0, 0.7)",
             }}
           />
@@ -81,8 +81,8 @@ const Landing = () => {
                 marginRight: "auto",
                 marginLeft: "auto",
                 marginTop: width < 902 ? 150 : 120,
-                fontSize: width < 902 ? 16 : 20,
-                width: width < 902 ? 200 : 250,
+                fontSize: width < 902 ? 15 : 20,
+                width: width < 902 ? 170 : 250,
               }}
             >
               SECCIÓN INFANTIL
@@ -100,8 +100,8 @@ const Landing = () => {
                 marginRight: "auto",
                 marginLeft: "auto",
                 marginTop: width < 902 ? 150 : 120,
-                fontSize: width < 902 ? 16 : 20,
-                width: width < 902 ? 200 : 250,
+                fontSize: width < 902 ? 15 : 20,
+                width: width < 902 ? 170 : 250,
               }}
             >
               SECCIÓN ADULTOS
