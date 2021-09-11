@@ -16,7 +16,7 @@ const ContactForm = ({ adult = false }) => {
                     type="email"
                     placeholder="name@example.com"
                   />
-                  <label for="email">Email</label>
+                  <label>Email</label>
                 </div>
                 <div className="form-floating mb-3">
                   <textarea
@@ -26,7 +26,7 @@ const ContactForm = ({ adult = false }) => {
                     placeholder="Enter your message here..."
                     style={{ height: "10rem" }}
                   ></textarea>
-                  <label for="message">Mensaje</label>
+                  <label >Mensaje</label>
                 </div>
                 <button
                   className="btn text-white bg-morado btn-xl "

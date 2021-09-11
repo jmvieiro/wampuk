@@ -13,7 +13,7 @@ const Landing = () => {
   return (
     <>
       <div
-        class="row"
+        className="row"
         style={{
           width: "102%",
           position: "absolute",
@@ -23,7 +23,7 @@ const Landing = () => {
         }}
       >
         <div
-          class="col-12"
+          className="col-12"
           style={{
             height: "",
             backgroundColor: "#00A3FF",
@@ -32,7 +32,7 @@ const Landing = () => {
         ></div>
       </div>
       <div
-        class="row"
+        className="row"
         style={{
           width: "102%",
           position: "absolute",
@@ -42,7 +42,7 @@ const Landing = () => {
         }}
       >
         <div
-          class="col-12"
+          className="col-12"
           style={{
             height: "",
             backgroundColor: "#2C5871",
@@ -51,12 +51,12 @@ const Landing = () => {
         ></div>
       </div>
       <div
-        class="row"
+        className="row"
         style={{
           zIndex: 99,
         }}
       >
-        <div class="col-12 text-center pt-4" style={{ height: "50vh" }}>
+        <div className="col-12 text-center pt-4" style={{ height: "50vh" }}>
           <img
             src={logo_wampuk_blanco}
             title="Sección Adultos"
@@ -69,9 +69,9 @@ const Landing = () => {
           />
         </div>
       </div>
-      <div class="row" style={{ zIndex: 9 }}>
+      <div className="row" style={{ zIndex: 9 }}>
         <div
-          class="col-6 bg-wampuk-children text-center"
+          className="col-6 bg-wampuk-children text-center"
           style={{ height: "50vh", borderTopRightRadius: "100% 40%" }}
         >
           <Link to={"/children"} style={{ flex: 0.5, margin: 0, padding: 0 }}>
@@ -90,7 +90,7 @@ const Landing = () => {
           </Link>
         </div>
         <div
-          class="col-6 bg-wampuk text-center"
+          className="col-6 bg-wampuk text-center"
           style={{ height: "50vh", borderTopLeftRadius: "100% 40%" }}
         >
           <Link to={"/adults"} style={{ flex: 0.5, margin: 0, padding: 0 }}>
