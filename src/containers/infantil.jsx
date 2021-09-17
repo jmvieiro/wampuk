@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import Main from "../components/main";
 
-const Children = () => {
+const Infantil = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -17,4 +17,4 @@ const Children = () => {
   );
 };
 
-export default Children;
+export default Infantil;

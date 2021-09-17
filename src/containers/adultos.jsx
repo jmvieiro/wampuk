@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import Main from "../components/main";
 
-const Adults = () => {
+const Adultos = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -17,4 +17,4 @@ const Adults = () => {
   );
 };
 
-export default Adults;
+export default Adultos;

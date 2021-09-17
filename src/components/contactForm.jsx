@@ -1,45 +1,40 @@
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+
 import React from "react";
 
 const ContactForm = ({ adult = false }) => {
   return (
     <>
-      <section className="page-section p-4 bg-gray1 text-white" id="contact">
-        <div className="container pt-4 ">
+      <Container
+        fluid
+        className="bg-gray1 text-white p-4 py-5 py-lg-4"
+        id="contact"
+      >
+        <Container>
           <h2 className="text-left mb-4">Contacto</h2>
-          <div className="row">
-            <div className="col-lg-8 col-xl-7">
-              <form id="contactForm">
-                <div className="form-floating mb-3">
-                  <input
-                    className="form-control"
-                    id="email"
-                    type="email"
-                    placeholder="name@example.com"
-                  />
-                  <label>Email</label>
-                </div>
-                <div className="form-floating mb-3">
-                  <textarea
-                    className="form-control"
-                    id="message"
-                    type="text"
-                    placeholder="Enter your message here..."
-                    style={{ height: "10rem" }}
-                  ></textarea>
-                  <label >Mensaje</label>
-                </div>
-                <button
-                  className="btn text-white bg-morado btn-xl "
-                  id="submitButton"
-                  type="submit"
+          <Row>
+            <Col lg={5}>
+              <Form>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
                 >
-                  Send
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" placeholder="nombre@ejemplo.com" />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Label>Consulta</Form.Label>
+                  <Form.Control as="textarea" rows={5} placeholder="Consulta" />
+                  <Button variant="success" className="mt-3 btn-sm">ENVIAR</Button>{" "}
+                </Form.Group>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
+      </Container>
     </>
   );
 };

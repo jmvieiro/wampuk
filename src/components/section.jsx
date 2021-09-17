@@ -1,5 +1,4 @@
 import React from "react";
-import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const Section = ({
   title,
@@ -8,14 +7,8 @@ const Section = ({
   titleCenter = false,
   divider = false,
 }) => {
-  const { width } = useWindowDimensions();
-
   return (
-    <div
-      style={{
-        padding: width < 902 ? 60 : 90,
-      }}
-    >
+    <div className="p-2 p-lg-4">
       <div
         className={`container d-flex flex-column ${
           titleCenter ? "align-items-center" : ""

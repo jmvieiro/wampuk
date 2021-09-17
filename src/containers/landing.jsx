@@ -74,7 +74,7 @@ const Landing = () => {
           className="col-6 bg-wampuk-children text-center"
           style={{ height: "50vh", borderTopRightRadius: "100% 40%" }}
         >
-          <Link to={"/children"} style={{ flex: 0.5, margin: 0, padding: 0 }}>
+          <Link to={"/infantil"} style={{ flex: 0.5, margin: 0, padding: 0 }}>
             <p
               className="fw-bold p-2 bg-primary rounded text-white"
               style={{
@@ -93,7 +93,7 @@ const Landing = () => {
           className="col-6 bg-wampuk text-center"
           style={{ height: "50vh", borderTopLeftRadius: "100% 40%" }}
         >
-          <Link to={"/adults"} style={{ flex: 0.5, margin: 0, padding: 0 }}>
+          <Link to={"/adultos"} style={{ flex: 0.5, margin: 0, padding: 0 }}>
             <p
               className="fw-bold p-2 bg-primary rounded text-white"
               style={{
