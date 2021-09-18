@@ -11,7 +11,7 @@ const NotFound = () => {
   }, []);
   return (
     <>
-      <Header adult={true} />{" "}
+      <Header adult={true} />
       <header className="masthead text-center pb-5">
         <h1>Página no encontrada.</h1>
         <LogoDivider />

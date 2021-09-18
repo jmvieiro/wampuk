@@ -1,3 +1,9 @@
+$background-color-morado-claro: rgba(158, 0, 93, 0.13);
+$background-color-violeta-claro: rgba(95, 118, 177, 0.24);
+$background-color-cyan-claro: rgba(0, 255, 255, 0.19);
+$background-color-grey-claro: #f2f2f2;
+$background-color-grey: #333333;
+$background-color-morado: #9e005d;
 $background-color-adults: #5f76b1;
 $background-color-children: #00ffff;
 
@@ -27,14 +33,6 @@ a {
 
 .logo {
   width: 75px;
-}
-
-.background-children {
-  background-color: $background-color-children !important;
-}
-
-.background-adults {
-  background-color: $background-color-adults !important;
 }
 
 .NavMain {
@@ -67,29 +65,98 @@ a {
 }
 
 .bg-morado {
-  background-color: #9e005d;
+  background-color: $background-color-morado !important;
 }
 
 .bg-morado-claro {
-  background-color: rgba(158, 0, 93, 0.13);
+  background-color: $background-color-morado-claro !important;
 }
 
 .bg-cyan-claro {
-  background-color: rgba(0, 255, 255, 0.19);
+  background-color: $background-color-cyan-claro !important;
 }
 
 .bg-violeta-claro {
-  background-color: rgba(95, 118, 177, 0.24);
+  background-color: $background-color-violeta-claro !important;
 }
 
 .bg-gray1 {
-  background-color: #333333;
+  background-color: $background-color-grey !important;
 }
 
 .bg-wampuk {
-  background-color: #5f76b1;
+  background-color: #5f76b1 !important;
 }
 
 .bg-wampuk-children {
-  background-color: #00ffff;
+  background-color: $background-color-children !important;
+}
+
+.background-children {
+  background-color: $background-color-children !important;
+}
+
+.background-adults {
+  background-color: $background-color-adults !important;
+}
+
+.bg-grey-claro {
+  background-color: $background-color-grey-claro;
+}
+
+.modal-content {
+  margin-top: 77px !important;
+  background-color: $background-color-adults !important;
+  border-radius: 2rem !important;
+  max-width: 400px;
+  margin: auto;
+}
+
+.children .modal-content {
+  margin-top: 77px !important;
+  background-color: $background-color-children !important;
+  border-radius: 2rem !important;
+  max-width: 400px;
+  margin: auto;
+}
+
+.btn-morado {
+  color: #fff;
+  background-color: $background-color-morado !important;
+  border-color: $background-color-morado !important;
+  padding: 10px 12px 10px 12px !important;
+  border-radius: 6px !important;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  font-weight: 500 !important;
+}
+
+.modal-header,
+.modal-footer {
+  border: 0 !important;
+}
+
+.swal2-modal {
+  background-color: #5f76b1 !important;
+  max-width: 300px !important;
+}
+.swal2-title {
+  color: white !important;
+  font-size: 20px !important;
+}
+.swal2-footer {
+  text-align: center !important;
+}
+
+.swal2-confirm {
+  background-color: $background-color-morado !important;
+  border-radius: 6px !important;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2) !important;
+  font-weight: 500 !important;
+}
+
+.swal2-cancel {
+  background-color: $background-color-grey !important;
+  border-radius: 6px !important;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2) !important;
+  font-weight: 500 !important;
 }

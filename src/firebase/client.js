@@ -1,6 +1,7 @@
 import { auth, db } from "../Firebase";
+import { getAuth, sendEmailVerification } from "firebase/auth";
 
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export const loginAdult = async (correo, clave) => {
   return auth
@@ -11,9 +12,12 @@ export const loginAdult = async (correo, clave) => {
     .catch((e) => {
       console.log(e);
       if (e.code === "auth/wrong-password") {
-        swal({ title: "Usuario o contraseña incorrectos", icon: "warning" });
+        Swal.fire({
+          title: "Usuario o contraseña incorrectos.",
+          icon: "error",
+        });
       } else if (e.code === "auth/user-not-found") {
-        swal({ title: "Este correo no esta registrado", icon: "warning" });
+        Swal.fire({ title: "Este correo no está registrado.", icon: "error" });
       }
     });
 };
@@ -28,8 +32,8 @@ export const loginChild = async (correo, clave) => {
       return res;
     })
     .catch((err) => {
-      swal({
-        title: "Ha ocurrido un error intentalo nuevamente",
+      Swal.fire({
+        title: "Ha ocurrido un error intentalo nuevamente.",
         icon: "warning",
       });
       console.log(err);
@@ -40,12 +44,36 @@ export const createAdult = async (correo, clave) => {
   return auth
     .createUserWithEmailAndPassword(correo, clave)
     .then((res) => {
+      const auth = getAuth();
+      sendEmailVerification(auth.currentUser).then(() => {
+        // Email verification sent!
+        // ...
+      });
       return res;
     })
     .catch((e) => {
       if (e.code === "auth/email-already-in-use") {
-        swal({ title: "Este usuario ya existe !", icon: "warning" });
+        Swal.fire({
+          title: "¡Este usuario ya se encuentra registrado!",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
       }
+    });
+};
+
+export const resendEmail = async () => {
+  const auth = getAuth();
+  sendEmailVerification(auth.currentUser)
+    .then(() => {
+      return "success";
+    })
+    .catch((e) => {
+      Swal.fire({
+        title: "Error al reenviar el correo electrónico.",
+        icon: "error",
+        confirmButtonText: "ACEPTAR",
+      });
     });
 };
 
@@ -61,9 +89,9 @@ export const createChild = async (correo, clave, adult) => {
       return response;
     })
     .catch((error) => {
-      swal({
-        title: "No se pudo crear la cuenta de tu hijo",
-        icon: "warning",
+      Swal.fire({
+        title: "No se pudo crear la cuenta del niñx.",
+        icon: "error",
       });
       console.error("Error writing document: ", error);
     });

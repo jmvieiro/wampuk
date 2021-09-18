@@ -56,14 +56,14 @@ const Landing = () => {
           zIndex: 99,
         }}
       >
-        <div className="col-12 text-center pt-4" style={{ height: "50vh" }}>
+        <div className="col-12 text-center pt-5" style={{ height: "50vh" }}>
           <img
             src={logo_wampuk_blanco}
             title="Sección Adultos"
             alt="Sección Adultos"
             style={{
               borderRadius: "50%",
-              maxWidth: 250,
+              maxWidth: 225,
               backgroundColor: "rgba(0, 0, 0, 0.7)",
             }}
           />
@@ -76,7 +76,7 @@ const Landing = () => {
         >
           <Link to={"/infantil"} style={{ flex: 0.5, margin: 0, padding: 0 }}>
             <p
-              className="fw-bold p-2 bg-primary rounded text-white"
+              className="btn-morado"
               style={{
                 marginRight: "auto",
                 marginLeft: "auto",
@@ -95,7 +95,7 @@ const Landing = () => {
         >
           <Link to={"/adultos"} style={{ flex: 0.5, margin: 0, padding: 0 }}>
             <p
-              className="fw-bold p-2 bg-primary rounded text-white"
+              className="btn-morado"
               style={{
                 marginRight: "auto",
                 marginLeft: "auto",

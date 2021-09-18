@@ -4,9 +4,10 @@ import {
   createChild,
   loginAdult,
   loginChild,
+  resendEmail,
 } from "../firebase/client";
 
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export const LoginContext = React.createContext();
 
@@ -14,6 +15,7 @@ export const LoginProvider = ({ children }) => {
   // datos Padre y nino
   const [datosNino, setDatosNino] = useState([]);
   const [datosAdulto, setDatosAdulto] = useState([]);
+
   // controla la autenticacion del usuario si esta o no esta autenticado (Adulto y nino)
   const [autenticadoNino, setAutenticadoNino] = useState(false);
   const [autenticadoAdulto, setAutenticadoAdulto] = useState(false);
@@ -27,46 +29,75 @@ export const LoginProvider = ({ children }) => {
 
   const loginNino = async (correo, clave) => {
     const response = await loginChild(correo, clave);
-    if (response.empty) {
-      swal({
-        title: "Usuario o contraseña incorrectos",
-        icon: "warning",
+    if (!response) {
+      Swal.fire({
+        title: "Usuario o contraseña incorrectos.",
+        confirmButtonText: "ACEPTAR",
+        icon: "error",
       });
       return "error";
     }
     setDatosNino(response.docs[0].id);
     setAutenticadoNino(true);
-    swal({ title: "Genial ya estas en Wampuk", icon: "success" });
+    Swal.fire({
+      title: "¡Bienvenido " + correo + " a Wampuk!",
+      confirmButtonText: "ACEPTAR",
+      icon: "success",
+    });
     return "success";
   };
 
   const loginAdulto = async (correo, clave) => {
     const response = await loginAdult(correo, clave);
-    if (response.empty) {
-      swal({
-        title: "Usuario o contraseña incorrectos",
-        icon: "warning",
+    if (!response) {
+      Swal.fire({
+        title: "Usuario o contraseña incorrectos.",
+        confirmButtonText: "ACEPTAR",
+        icon: "error",
       });
       return "error";
     }
+    if (!response.emailVerified) {
+      Swal.fire({
+        title: `Aún no has verificado tu correo electrónico. Ingresá a ${response.user.email} para hacerlo antes de operar en Wampuk.`,
+        confirmButtonText: "REENVIAR",
+        showCancelButton: true,
+        cancelButtonText: "CANCELAR",
+        reverseButtons: true,
+        icon: "info",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await resendEmail();
+          Swal.fire({
+            title: `El correo electrónico ha sido reenviado a la casilla ${correo}. Verificalo para poder operar en Wampuk.`,
+            confirmButtonText: "ACEPTAR",
+            icon: "info",
+          });
+        }
+      });
+      return "success";
+    }
     setDatosAdulto(response.user);
     setAutenticadoAdulto(true);
-    swal({ title: "Acceso correcto a wampuk", icon: "success" });
+    Swal.fire({
+      title: "¡Bienvenido " + correo + " a Wampuk!",
+      icon: "success",
+      confirmButtonText: "ACEPTAR",
+    });
     return "success";
   };
 
   const crearCuentaAdulto = async (correo, clave) => {
     const response = await createAdult(correo, clave);
-    setDatosAdulto(response.user);
-    setAutenticadoAdulto(true);
-    swal({ title: "Usuario registrado correctamente", icon: "success" });
-    return "success";
+    if (response) return "success";
+    return "error";
   };
 
   const crearCuentaNino = async (correo, clave) => {
     await createChild(correo, clave, datosAdulto.uid);
-    swal({
-      title: "La cuenta de tu hijo se ha creado correctamente",
+    Swal.fire({
+      title: "¡La cuenta deL niñx ha sido creada correctamente!",
+      confirmButtonText: "ACEPTAR",
       icon: "success",
     });
     return "success";
@@ -85,7 +116,7 @@ export const LoginProvider = ({ children }) => {
         loginAdulto,
         crearCuentaAdulto,
         crearCuentaNino,
-        cerrarSesion
+        cerrarSesion,
       }}
     >
       {children}

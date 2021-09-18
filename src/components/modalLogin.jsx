@@ -1,6 +1,8 @@
-import { Button, Container, Form, Modal } from "react-bootstrap";
+import { Button, Container, Form, InputGroup, Modal } from "react-bootstrap";
 import React, { useContext } from "react";
+import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LoginContext } from "../context/LoginContext";
 
 const ModalLogin = ({
@@ -21,8 +23,12 @@ const ModalLogin = ({
             setShowLoginAdulto(false);
           }}
         >
-          <Modal.Header>
-            <Modal.Title>Iniciar Sesión</Modal.Title>
+          <Modal.Header closeButton>
+            <Modal.Title
+              style={{ flex: 1, textAlign: "center", color: "white" }}
+            >
+              Inicia sesión
+            </Modal.Title>
           </Modal.Header>
           <Form
             onSubmit={async (e) => {
@@ -37,39 +43,46 @@ const ModalLogin = ({
             <Modal.Body>
               <Container>
                 <Form.Group controlId="correo">
-                  <Form.Label>Correo</Form.Label>
-                  <Form.Control type="email" placeholder="Ingresa tu correo" />
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text>@</InputGroup.Text>
+                    <Form.Control type="email" placeholder="Mail" />
+                  </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="clave">
-                  <Form.Label>Contraseña</Form.Label>
-                  <Form.Control type="password" placeholder="Contraseña" />
+                  <InputGroup className="mb-2">
+                    <InputGroup.Text>
+                      <FontAwesomeIcon
+                        color="#212529;"
+                        icon={faLock}
+                        title="Contraseña"
+                      />
+                    </InputGroup.Text>
+                    <Form.Control type="password" placeholder="Contraseña" />
+                  </InputGroup>
                 </Form.Group>
               </Container>
             </Modal.Body>
-            <Modal.Footer>
-              <Button
-                variant="danger"
-                onClick={() => {
-                  setShowLoginAdulto(false);
-                }}
-              >
-                Cerrar
-              </Button>
-              <Button variant="success" type="submit">
-                Ingresar
+            <Modal.Footer style={{ justifyContent: "center" }}>
+              <Button className="btn-morado" type="submit">
+                INICIAR SESIÓN
               </Button>
             </Modal.Footer>
           </Form>
         </Modal>
       ) : (
         <Modal
+          className="children"
           show={showLoginNino}
           onHide={() => {
             setShowLoginNino(false);
           }}
         >
-          <Modal.Header>
-            <Modal.Title>Iniciar</Modal.Title>
+          <Modal.Header closeButton>
+            <Modal.Title
+              style={{ flex: 1, textAlign: "center", color: "black" }}
+            >
+              Inicia sesión
+            </Modal.Title>
           </Modal.Header>
           <Form
             onSubmit={async (e) => {
@@ -84,32 +97,34 @@ const ModalLogin = ({
             <Modal.Body>
               <Container>
                 <Form.Group controlId="usuario">
-                  <Form.Label>Tu usuario</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Ingresa el usuario que creó tu padre"
-                  />
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text>
+                      <FontAwesomeIcon
+                        color="#212529;"
+                        icon={faUser}
+                        title="Usuario"
+                      />
+                    </InputGroup.Text>
+                    <Form.Control type="text" placeholder="Usuario" />
+                  </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="clave2">
-                  <Form.Label>Tu contraseña</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Ingresa la contraseña que asignó tu padre"
-                  />
+                  <InputGroup className="mb-2">
+                    <InputGroup.Text>
+                      <FontAwesomeIcon
+                        color="#212529;"
+                        icon={faLock}
+                        title="Contraseña"
+                      />
+                    </InputGroup.Text>
+                    <Form.Control type="password" placeholder="Contraseña" />
+                  </InputGroup>
                 </Form.Group>
               </Container>
             </Modal.Body>
-            <Modal.Footer>
-              <Button
-                variant="danger"
-                onClick={() => {
-                  setShowLoginNino(false);
-                }}
-              >
-                Cerrar
-              </Button>
-              <Button variant="success" type="submit">
-                Ingresar
+            <Modal.Footer style={{ justifyContent: "center" }}>
+              <Button className="btn-morado" type="submit">
+                INICIAR SESIÓN
               </Button>
             </Modal.Footer>
           </Form>

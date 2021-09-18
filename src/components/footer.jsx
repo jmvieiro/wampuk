@@ -5,16 +5,23 @@ const Footer = () => {
     <>
       <div className="background-adults py-4 text-center text-black">
         <div className="container">
-          <small>
+          <small className="fw-bold">
             Wampuk by{" "}
             <a
-              className="text-white"
-              style={{ textTransform: "none" }}
+              style={{
+                textTransform: "none",
+                color: "#e0ff00",
+                backgroundColor: "black",
+                paddingLeft: 3,
+                paddingRight: 3,
+              }}
               href="https://www.coderhouse.com/"
+              target="_blank"
+              rel="noreferrer"
             >
-              Coder House
+              <i>CODER HOUSE</i>
             </a>
-            . Coded with <span style={{ color: "#bf0f0f" }}>❤</span>.
+            {" "}|{" "}Coded with <span style={{ color: "#bf0f0f" }}>❤</span>
           </small>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
+import { Link } from "react-router-dom";
 import React from "react";
 
 const ContactForm = ({ adult = false }) => {
@@ -13,7 +14,7 @@ const ContactForm = ({ adult = false }) => {
         <Container>
           <h2 className="text-left mb-4">Contacto</h2>
           <Row>
-            <Col lg={5}>
+            <Col lg={6} className="pe-5">
               <Form>
                 <Form.Group
                   className="mb-3"
@@ -28,9 +29,32 @@ const ContactForm = ({ adult = false }) => {
                 >
                   <Form.Label>Consulta</Form.Label>
                   <Form.Control as="textarea" rows={5} placeholder="Consulta" />
-                  <Button variant="success" className="mt-3 btn-sm">ENVIAR</Button>{" "}
+                  <Button variant="success" className="mt-3 btn-sm">
+                    ENVIAR
+                  </Button>
                 </Form.Group>
               </Form>
+            </Col>
+            <Col lg={3}>
+              <a href="" style={{ textDecoration: "none", color: "white" }}>
+                CONTACTO
+              </a>
+              <br />
+              <a href="" style={{ textDecoration: "none", color: "white" }}>
+                MAIL
+              </a>
+              <br />
+              <a href="" style={{ textDecoration: "none", color: "white" }}>
+                REDES
+              </a>
+            </Col>
+            <Col lg={3}>
+              <Link
+                to="/faq"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <p>PREGUNTAS FRECUENTES</p>
+              </Link>
             </Col>
           </Row>
         </Container>

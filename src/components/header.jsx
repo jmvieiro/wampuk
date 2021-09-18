@@ -1,5 +1,5 @@
 import { Container, Image, Nav, NavLink, Navbar } from "react-bootstrap";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
@@ -20,6 +20,18 @@ const Header = ({ adult = false }) => {
   const [showCrearAdulto, setShowCrearAdulto] = useState(false);
   const [showCrearNino, setShowCrearNino] = useState(false);
 
+  useEffect(() => {
+    const a = document.getElementsByClassName("nav-link");
+    for (let index = 0; index < a.length; index++) {
+      const element = a[index];
+      if (element.getAttribute("href") === window.location.pathname)
+        element.style.color = adult ? "#9e005d" : "green";
+      else element.style.color = adult ? "white" : "black";
+      if (element.innerText.toLowerCase() === "registrarse")
+        element.style.color = "#00FFFF";
+    }
+  });
+
   return (
     <Navbar
       fixed="top"
@@ -29,7 +41,7 @@ const Header = ({ adult = false }) => {
     >
       <Container>
         <Navbar.Brand className="p-0">
-          <Link to={"/"}>
+          <Link to={adult ? "/adultos" : "/infantil"}>
             <Image
               src={adult ? logo_wampuk_blanco : logo_wampuk_sf}
               title="Wampuk"
@@ -46,42 +58,36 @@ const Header = ({ adult = false }) => {
                 <Link
                   className="nav-link"
                   to={"/cursos"}
-                  style={{ color: "white" }}
                 >
                   Cursos
                 </Link>
                 <Link
                   className="nav-link"
                   to={"/suscripciones"}
-                  style={{ color: "white" }}
                 >
                   Suscripciones
                 </Link>
                 <Link
                   className="nav-link"
                   to={"/blog"}
-                  style={{ color: "white" }}
                 >
                   Blog
                 </Link>
                 <Link
                   className="nav-link"
                   to={"/faq"}
-                  style={{ color: "white" }}
                 >
                   Preguntas frecuentes
                 </Link>
                 <Link
                   className="nav-link"
                   to={"/adultos#contact"}
-                  style={{ color: "white" }}
                 >
                   Contacto
                 </Link>
                 <Link
                   className="nav-link"
                   to={"/infantil"}
-                  style={{ color: "white" }}
                 >
                   Ir a sección infantil
                 </Link>
@@ -95,7 +101,7 @@ const Header = ({ adult = false }) => {
                       onClick={() => {
                         setShowLoginAdulto(true);
                       }}
-                      style={{ color: "white", textAlign: "right" }}
+                      style={{  textAlign: "right" }}
                     >
                       Iniciar sesión
                     </NavLink>
@@ -103,7 +109,7 @@ const Header = ({ adult = false }) => {
                       onClick={() => {
                         setShowCrearAdulto(true);
                       }}
-                      style={{ color: "white", textAlign: "right" }}
+                      style={{  textAlign: "right" }}
                     >
                       Registrarse
                     </NavLink>
@@ -136,14 +142,12 @@ const Header = ({ adult = false }) => {
                 <Link
                   className="nav-link"
                   to={"/explorar"}
-                  style={{ color: "black" }}
                 >
                   Explorar
                 </Link>
                 <Link
                   className="nav-link"
                   to={"/adultos"}
-                  style={{ color: "black" }}
                 >
                   Ir a sección adultos
                 </Link>
@@ -158,7 +162,6 @@ const Header = ({ adult = false }) => {
                       onClick={() => {
                         setShowLoginNino(true);
                       }}
-                      style={{ color: "black" }}
                     >
                       Iniciar sesión
                     </NavLink>

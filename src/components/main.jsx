@@ -1,17 +1,24 @@
 import { Col, Container, Row } from "react-bootstrap";
+import React, { useContext, useState } from "react";
 
 import Card from "./card";
 import Carousel from "./carousel";
 import ContactForm from "./contactForm";
-import React from "react";
+import { LoginContext } from "../context/LoginContext";
+import ModalLogin from "./modalLogin";
 import Section from "./section";
 import compass from "../images/compass.png";
 import cursos from "../images/cursos.png";
 import logo_wampuk_blanco from "../images/logo_wampuk_blanco.png";
 import logo_wampuk_sf from "../images/logo_wampuk_sf.png";
 import paper from "../images/paper.png";
+import tesoro from "../images/tesoro.png";
 
 const Main = ({ adult = false }) => {
+  const { autenticadoNino } = useContext(LoginContext);
+
+  const [showLoginNino, setShowLoginNino] = useState(false);
+
   return (
     <>
       {adult ? (
@@ -67,7 +74,7 @@ const Main = ({ adult = false }) => {
             fluid
             className={"bg-cyan-claro text-black p-4 py-5 py-lg-4"}
           >
-            <Container>
+            <Container fluid>
               <Row>
                 <Col style={{ alignSelf: "center" }} lg={5}>
                   <img
@@ -98,7 +105,7 @@ const Main = ({ adult = false }) => {
                 </Col>
               </Row>
             </Container>
-          </Container>{" "}
+          </Container>
           <Container
             fluid
             className={"bg-morado-claro text-black p-4 py-5 py-lg-4"}
@@ -119,62 +126,101 @@ const Main = ({ adult = false }) => {
           <ContactForm />
         </>
       ) : (
-        ""
-      )}
-
-      <div className={`masthead pb-0`}>
-        {adult ? (
-          <></>
-        ) : (
-          <>
-            <div className={"bg-violeta-claro text-center p-5"}>
-              <img
-                src={logo_wampuk_sf}
-                title="Wampuk"
-                alt="Wampuk"
-                style={{ width: 250 }}
-                className=""
-              />
-              <div
-                className="bg-gray1 text-white mt-5"
-                style={{
-                  padding: 22,
-                  margin: "auto",
-                  maxWidth: 750,
-                  width: "90%",
-                }}
-              >
-                <p className="fw-bold mb-0" style={{ fontSize: 40 }}>
-                  ¡Bienvenido a Wampuk!
-                </p>
-              </div>
-            </div>
-            <div
-              className={"p-1 pt-4 pb-4"}
-              style={{ backgroundColor: "#C4E9E5" }}
-            >
-              <div className="container">
-                <div className="row">
-                  <div className="col-sm-6">
+        <>
+          <Container
+            fluid
+            style={{ marginTop: 77 }}
+            className={"bg-violeta-claro text-center p-4 py-5 py-lg-4"}
+          >
+            <Container>
+              <Row>
+                <Col lg={12}>
+                  <img
+                    src={logo_wampuk_sf}
+                    title="Wampuk"
+                    alt="Wampuk"
+                    style={{ width: 250 }}
+                    className=""
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col lg={12}>
+                  <div
+                    className="bg-gray1 text-white mt-5"
+                    style={{
+                      padding: 22,
+                      margin: "auto",
+                      maxWidth: 750,
+                      width: "90%",
+                    }}
+                  >
+                    <p className="fw-bold mb-0" style={{ fontSize: 40 }}>
+                      ¡Bienvenido a Wampuk!
+                    </p>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </Container>
+          <Container
+            fluid
+            style={{
+              backgroundColor: "#C4E9E5",
+              paddingTop: 75,
+              paddingBottom: 75,
+            }}
+            className={"text-center "}
+          >
+            <Container>
+              <Row>
+                {autenticadoNino ? (
+                  <Col lg={6}>
+                    <Card
+                      title={`MI COFRE`}
+                      text={`Continúa con los cursos que empezaste o redescubre los que ya has terminado.`}
+                      img={tesoro}
+                    />
+                  </Col>
+                ) : (
+                  <Col
+                    lg={6}
+                    onClick={() => {
+                      setShowLoginNino(true);
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
                     <Card
                       title={`INICIA SESIÓN`}
                       text={`Inicia sesión para acceder a tus cursos y navegar por Wampuk.`}
                       img={paper}
                     />
-                  </div>
-                  <div className="col-sm-6">
-                    <Card
-                      title={`EXPLORAR`}
-                      text={`Descrubre diferentes cursos y diviértete aprendiendo.`}
-                      img={compass}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
+                  </Col>
+                )}
+                <Col
+                  lg={6}
+                  onClick={() => {
+                    alert("hola");
+                  }}
+                  style={{ cursor: "pointer" }}
+                >
+                  <Card
+                    title={`EXPLORAR`}
+                    text={`Descrubre diferentes cursos y diviértete aprendiendo.`}
+                    img={compass}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          </Container>
+          {/* Modal Login niños*/}
+          <ModalLogin
+            adult={adult}
+            showLoginNino={showLoginNino}
+            setShowLoginNino={setShowLoginNino}
+          />
+        </>
+      )}
     </>
   );
 };

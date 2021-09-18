@@ -77,9 +77,10 @@ const Carousel = () => {
 
   return (
     <Slider {...settings}>
-      {educadores.map((educador) => {
+      {educadores.map((educador, index) => {
         return (
           <Educador
+            key={index}
             title={educador.title}
             text={educador.text}
             img={educador.img}
