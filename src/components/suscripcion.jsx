@@ -12,7 +12,7 @@ const Suscripcion = ({ title, p1, p2, p3, index }) => {
   let color =
     index === 0 ? "text-black" : index === 1 ? "text-black" : "text-white";
   return (
-    <Col className={`text-center ${color} p-5  m-2 rounded-3 ${clase}`}>
+    <Col className={`text-center ${color} rounded-3 ${clase} p-5 m-2`}>
       <Row className="">
         <Col>
           <h4>{title}</h4>
