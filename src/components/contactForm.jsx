@@ -36,17 +36,15 @@ const ContactForm = ({ adult = false }) => {
               </Form>
             </Col>
             <Col lg={3}>
-              <a href="" style={{ textDecoration: "none", color: "white" }}>
-                CONTACTO
-              </a>
-              <br />
-              <a href="" style={{ textDecoration: "none", color: "white" }}>
-                MAIL
-              </a>
-              <br />
-              <a href="" style={{ textDecoration: "none", color: "white" }}>
-                REDES
-              </a>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <p>CONTACTO</p>
+              </Link>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <p>MAIL</p>
+              </Link>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <p>REDES</p>
+              </Link>
             </Col>
             <Col lg={3}>
               <Link
