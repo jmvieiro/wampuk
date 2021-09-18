@@ -57,7 +57,7 @@ export const LoginProvider = ({ children }) => {
       });
       return "error";
     }
-    if (!response.emailVerified) {
+    if (!response.user.emailVerified) {
       Swal.fire({
         title: `Aún no has verificado tu correo electrónico. Ingresá a ${response.user.email} para hacerlo antes de operar en Wampuk.`,
         confirmButtonText: "REENVIAR",
