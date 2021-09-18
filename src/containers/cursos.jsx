@@ -81,6 +81,9 @@ const Cursos = () => {
       </Container>
 
       <Container className={" p-4 py-5 py-lg-4"}>
+        <Row style={{ textAlign: "center" }}>
+          <h5>Conocé nuestra oferta de cursos</h5>
+        </Row>
         <Row style={{ justifyContent: "center", margin: "auto" }}>
           {cursos.map((curso, index) => {
             return (
