@@ -4,6 +4,7 @@ import { faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LoginContext } from "../context/LoginContext";
 import { NavDropdown } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 
 const UserMenu = ({ adult }) => {
   const { autenticadoAdulto, datosAdulto, datosNino, cerrarSesion } =
@@ -47,7 +48,11 @@ const UserMenu = ({ adult }) => {
           size="lg"
           className="me-2"
         />
-        {autenticadoAdulto ? datosAdulto.correo : datosNino}
+        {autenticadoAdulto ? 
+        <Link to='/micuenta'>Mi cuenta</Link>
+        :
+        <Link to='/micofre'>Mi cofre</Link>
+        }
       </NavDropdown.Item>
 
       <NavDropdown.Item

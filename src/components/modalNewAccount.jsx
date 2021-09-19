@@ -152,7 +152,6 @@ const ModalNewAccount = ({
           </Modal.Header>
           <Form
             onSubmit={async (e) => {
-              debugger;
               e.preventDefault();
               if (
                 e.target.elements.clave.value !== e.target.elements.clave2.value

@@ -21,3 +21,5 @@ const db = fire.firestore();
 const auth = fire.auth();
 export { db, auth };
 export const usuariosDB = db.collection("usuarios");
+export const ninosDB = db.collection("hijos");
+export const suscripcionDB = db.collection("suscripcion");

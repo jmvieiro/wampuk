@@ -1,8 +1,43 @@
 import { Button, Col, Row } from "react-bootstrap";
+import { LoginContext } from "../context/LoginContext";
 
-import React from "react";
+import React, { useContext } from "react";
+import Swal from "sweetalert2";
+import { guardarSuscripcion } from "../firebase/client";
 
 const Suscripcion = ({ title, p1, p2, p3, index, id }) => {
+  const { datosAdulto,autenticadoAdulto } = useContext(LoginContext);
+
+  const suscription = (tipo) => {
+    if(autenticadoAdulto===true){
+      let tipoS='';
+      if(tipo ===0){
+        tipoS='básica'
+      }else if(tipo===1){
+        tipoS='media'
+      }else if(tipo===2){
+        tipoS='oro'
+      }
+      const data = {
+        tipo:tipoS,
+        usuario:datosAdulto.uid,
+        fechaI: new Date().toLocaleDateString()
+      }
+      guardarSuscripcion(data);
+      Swal.fire({
+        title: "Te has siscrito correctamente",
+        icon: "success",
+        confirmButtonText: "ACEPTAR",
+      });
+    }else{
+      Swal.fire({
+        title: "Debes estar logeado para suscribirte",
+        icon: "error",
+        confirmButtonText: "ACEPTAR",
+      });
+    }
+  }
+
   let clase =
     index === 0
       ? "bg-grey-claro"
@@ -34,7 +69,7 @@ const Suscripcion = ({ title, p1, p2, p3, index, id }) => {
       </Row>
       <Row>
         <Col>
-          <Button className="btn-morado">SUSCRIBIRSE</Button>
+          <Button onClick={()=>{suscription(index)}} className="btn-morado">SUSCRIBIRSE</Button>
         </Col>
       </Row>
     </Col>
