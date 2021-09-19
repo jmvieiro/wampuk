@@ -13,7 +13,10 @@ const Educador = ({ title, text, img, id }) => {
       </Row>
       <Row className="p-1 p-lg-4 py-2">
         <Col className="p-3 bg-morado rounded-3 text-white">
-          <Link to={"/educadores/" + id}>
+          <Link
+            to={"/educadores/" + id}
+            style={{ textTransform: "none", color: "white" }}
+          >
             <h5>{title}</h5>
           </Link>
           <h6>{text}</h6>

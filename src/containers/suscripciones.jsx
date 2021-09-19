@@ -17,7 +17,7 @@ const Suscripciones = () => {
       title: "Suscripción básica",
       p1: "Costo: 39.99USD por curso.",
       p2: "Permite acceder a cursos individuales.",
-      p3: ["Clases pregrabadas", "Acceso desde mobile o desktop."],
+      p3: ["Clases pregrabadas.", "Acceso desde mobile o desktop."],
     },
     {
       id: 2, 
@@ -25,7 +25,7 @@ const Suscripciones = () => {
       p1: "Costo: 14.99USD por mes.",
       p2: "Permite acceder a toda la plataforma de Wampuk por un mes entero.",
       p3: [
-        "Clases pregrabadas",
+        "Clases pregrabadas.",
         "Acceso desde mobile o desktop.",
         "Participación en actividades de gamificación: Acceso al top 10 de Wampuk.",
         "Certificación de terminación de actividades.",
@@ -38,7 +38,7 @@ const Suscripciones = () => {
       p1: "Costo: 7.99USD por mes facturado al año.",
       p2: "Suscripción por un año a la plataforma Wampuk. Haz que tu hijo aprenda cada semana todo el año.",
       p3: [
-        "Clases pregrabadas",
+        "Clases pregrabadas.",
         "Acceso desde mobile o desktop.",
         "Participación en actividades de gamificación: Acceso al top 10 de Wampuk.",
         "Certificación de terminación de actividades.",

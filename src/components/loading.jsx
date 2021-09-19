@@ -23,18 +23,18 @@ const Loading = () => {
           flexDirection: "column",
         }}
       >
-        <img
-          className="mb-3"
-          src={logo}
-          alt="Wampuk"
-          title="Wampuk"
-          style={{ width: 250 }}
-        />
         <PacmanLoader
           color={"#5f76b1"}
           loading={true}
           css={override}
           size={25}
+        />
+        <img
+          className="mt-3"
+          src={logo}
+          alt="Wampuk"
+          title="Wampuk"
+          style={{ width: 250 }}
         />
       </Container>
     </>
