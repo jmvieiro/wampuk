@@ -1,30 +1,46 @@
-import React, { useEffect } from "react";
+import { Button, Container } from "react-bootstrap";
 
-import Footer from "../components/footer";
-import Header from "../components/header";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 import { Link } from "react-router-dom";
-import LogoDivider from "../components/logoDivider";
+import React from "react";
+import { css } from "@emotion/react";
+import logo from "../images/logo_wampuk_sf.png";
 
 const NotFound = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const override = css`
+    padding-right: 100px;
+    margin-top: 50px;
+  `;
+
   return (
     <>
-      <Header adult={true} />
-      <header className="masthead text-center pb-5">
-        <h1>Página no encontrada.</h1>
-        <LogoDivider />
-        <Link to={"/"}>
-          <button
-            style={{ width: 200, fontSize: 18 }}
-            className="text-uppercase text-center font-weight-bold bg-primary text-white rounded p-2"
-          >
-            Volver al inicio
-          </button>
+      <Container
+        fluid
+        className="bg-grey-claro"
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+          flexDirection: "column",
+        }}
+      >
+        {" "}
+        <img src={logo} alt="Wampuk" title="Wampuk" style={{ width: 250 }} />
+        <h3 className="mt-3 mb-3">¡Ups! Página no encontrada</h3>
+        <Link to="/">
+          <Button className="btn-morado" to="/">
+            VOLVER AL INICIO
+          </Button>
         </Link>
-      </header>
-      <Footer />
+        <ClimbingBoxLoader
+          color={"#5f76b1"}
+          loading={true}
+          css={override}
+          size={25}
+        />
+      </Container>
     </>
   );
 };

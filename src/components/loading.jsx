@@ -7,6 +7,7 @@ import logo from "../images/logo_wampuk_sf.png";
 const Loading = () => {
   const override = css`
     padding-right: 100px;
+    margin-bottom: 40px;
   `;
 
   return (
@@ -30,7 +31,6 @@ const Loading = () => {
           size={25}
         />
         <img
-          className="mt-3"
           src={logo}
           alt="Wampuk"
           title="Wampuk"
