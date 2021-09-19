@@ -81,12 +81,6 @@ const Header = ({ adult = false }) => {
                 </Link>
                 <Link
                   className="nav-link"
-                  to={"/adultos#contact"}
-                >
-                  Contacto
-                </Link>
-                <Link
-                  className="nav-link"
                   to={"/infantil"}
                 >
                   Ir a sección infantil

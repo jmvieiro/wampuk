@@ -2,7 +2,7 @@ import { Button, Col, Row } from "react-bootstrap";
 
 import React from "react";
 
-const Suscripcion = ({ title, p1, p2, p3, index }) => {
+const Suscripcion = ({ title, p1, p2, p3, index, id }) => {
   let clase =
     index === 0
       ? "bg-grey-claro"

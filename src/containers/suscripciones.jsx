@@ -13,12 +13,14 @@ const Suscripciones = () => {
 
   const suscripciones = [
     {
+      id: 1, 
       title: "Suscripción básica",
       p1: "Costo: 39.99USD por curso.",
       p2: "Permite acceder a cursos individuales.",
       p3: ["Clases pregrabadas", "Acceso desde mobile o desktop."],
     },
     {
+      id: 2, 
       title: "Suscripción media",
       p1: "Costo: 14.99USD por mes.",
       p2: "Permite acceder a toda la plataforma de Wampuk por un mes entero.",
@@ -31,6 +33,7 @@ const Suscripciones = () => {
       ],
     },
     {
+      id: 3, 
       title: "Suscripción oro",
       p1: "Costo: 7.99USD por mes facturado al año.",
       p2: "Suscripción por un año a la plataforma Wampuk. Haz que tu hijo aprenda cada semana todo el año.",
@@ -74,6 +77,7 @@ const Suscripciones = () => {
             return (
               <Suscripcion
                 key={index}
+                id={suscripcion.id}
                 title={suscripcion.title}
                 p1={suscripcion.p1}
                 p2={suscripcion.p2}
