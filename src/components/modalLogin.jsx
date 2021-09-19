@@ -37,7 +37,7 @@ const ModalLogin = ({
                 e.target.elements.correo.value,
                 e.target.elements.clave.value
               );
-              if (result === "success") setShowLoginAdulto(false);
+              if (result.res === "success") setShowLoginAdulto(false);
             }}
           >
             <Modal.Body>

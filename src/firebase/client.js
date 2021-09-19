@@ -1,4 +1,4 @@
-import { auth, db } from "../Firebase";
+import { auth, db, usuariosDB } from "../Firebase";
 import { getAuth, sendEmailVerification } from "firebase/auth";
 
 import Swal from "sweetalert2";
@@ -40,14 +40,14 @@ export const loginChild = async (correo, clave) => {
     });
 };
 
-export const createAdult = async (correo, clave) => {
+export const createAdult = async (clave, usuario) => {
   return auth
-    .createUserWithEmailAndPassword(correo, clave)
+    .createUserWithEmailAndPassword(usuario.correo, clave)
     .then((res) => {
       const auth = getAuth();
       sendEmailVerification(auth.currentUser).then(() => {
-        // Email verification sent!
-        // ...
+        usuario.uid = res.user.uid;
+        guardarUsuario(usuario);
       });
       return res;
     })
@@ -95,4 +95,27 @@ export const createChild = async (correo, clave, adult) => {
       });
       console.error("Error writing document: ", error);
     });
+};
+
+const guardarUsuario = (usuario) => {
+  usuariosDB.add(usuario).catch((res) => {
+    Swal.fire({
+      title: "No se pudo guardar los datos del adulto.",
+      icon: "error",
+    });
+    console.error("Error writing document: ", res);
+  });
+};
+
+export const getAdult = async (id) => {
+  try {
+    const response = await usuariosDB.where("uid", "==", id).get();
+    return response.docs[0].data();
+  } catch (res) {
+    Swal.fire({
+      title: "No se pudo obtener los datos del adulto.",
+      icon: "error",
+    });
+    console.error("Error writing document: ", res);
+  }
 };

@@ -22,7 +22,7 @@ const UserMenu = ({ adult }) => {
           className={adult ? "text-black" : "text-white"}
         />,
         <span key={1} className={`px-1 ${adult ? "text-black" : "text-white"}`}>
-          {autenticadoAdulto ? `${datosAdulto.email}` : `${datosNino}`}
+          {autenticadoAdulto ? `${datosAdulto.nombre} ${datosAdulto.apellido}` : `${datosNino}`}
         </span>,
       ]}
     >
@@ -35,7 +35,7 @@ const UserMenu = ({ adult }) => {
           size="lg"
           className="me-2"
         />
-        {autenticadoAdulto ? datosAdulto.email : datosNino}
+        {autenticadoAdulto ? datosAdulto.correo : datosNino}
       </NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item
@@ -47,7 +47,7 @@ const UserMenu = ({ adult }) => {
           size="lg"
           className="me-2"
         />
-        {autenticadoAdulto ? datosAdulto.email : datosNino}
+        {autenticadoAdulto ? datosAdulto.correo : datosNino}
       </NavDropdown.Item>
 
       <NavDropdown.Item

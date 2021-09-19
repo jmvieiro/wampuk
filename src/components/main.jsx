@@ -6,6 +6,7 @@ import Carousel from "./carousel";
 import ContactForm from "./contactForm";
 import { LoginContext } from "../context/LoginContext";
 import ModalLogin from "./modalLogin";
+import ModalNewAccount from "./modalNewAccount";
 import Section from "./section";
 import compass from "../images/compass.png";
 import cursos from "../images/cursos.png";
@@ -15,9 +16,10 @@ import paper from "../images/paper.png";
 import tesoro from "../images/tesoro.png";
 
 const Main = ({ adult = false }) => {
-  const { autenticadoNino } = useContext(LoginContext);
+  const { autenticadoNino, autenticadoAdulto } = useContext(LoginContext);
 
   const [showLoginNino, setShowLoginNino] = useState(false);
+  const [showCrearNino, setShowCrearNino] = useState(false);
 
   return (
     <>
@@ -182,6 +184,20 @@ const Main = ({ adult = false }) => {
                       img={tesoro}
                     />
                   </Col>
+                ) : autenticadoAdulto ? (
+                  <Col
+                    lg={6}
+                    onClick={() => {
+                      setShowCrearNino(true);
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <Card
+                      title={`REGISTRAR NIÑX`}
+                      text={`Puedes registrar a tu hijo o hija para que empiece a tener su experiencia Wampuk.`}
+                      img={paper}
+                    />
+                  </Col>
                 ) : (
                   <Col
                     lg={6}
@@ -218,6 +234,12 @@ const Main = ({ adult = false }) => {
             adult={adult}
             showLoginNino={showLoginNino}
             setShowLoginNino={setShowLoginNino}
+          />
+          {/* Modal Crear cuenta ninos */}
+          <ModalNewAccount
+            adult={adult}
+            showCrearNino={showCrearNino}
+            setShowCrearNino={setShowCrearNino}
           />
         </>
       )}

@@ -1,10 +1,10 @@
 import { Button, Container, Form, InputGroup, Modal } from "react-bootstrap";
 import React, { useContext } from "react";
+import { faChild, faLock } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LoginContext } from "../context/LoginContext";
 import Swal from "sweetalert2";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 const ModalNewAccount = ({
   adult,
@@ -43,9 +43,14 @@ const ModalNewAccount = ({
                   confirmButtonText: "ACEPTAR",
                 });
               }
+              const usuario = {
+                correo: e.target.elements.correo.value,
+                nombre: e.target.elements.nombre.value,
+                apellido: e.target.elements.apellido.value,
+              };
               const result = await crearCuentaAdulto(
-                e.target.elements.correo.value,
-                e.target.elements.clave.value
+                e.target.elements.clave.value,
+                usuario
               );
               if (result === "success") {
                 setShowCrearAdulto(false);
@@ -60,13 +65,36 @@ const ModalNewAccount = ({
           >
             <Modal.Body>
               <Container>
+                <Form.Group controlId="nombre">
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text>
+                      <FontAwesomeIcon
+                        color="#212529;"
+                        icon={faChild}
+                        title="Nombre"
+                      />
+                    </InputGroup.Text>
+                    <Form.Control required type="text" placeholder="Nombre" />
+                  </InputGroup>
+                </Form.Group>
+                <Form.Group controlId="apellido">
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text>
+                      <FontAwesomeIcon
+                        color="#212529;"
+                        icon={faChild}
+                        title="Apellido"
+                      />
+                    </InputGroup.Text>
+                    <Form.Control required type="text" placeholder="Apellido" />
+                  </InputGroup>
+                </Form.Group>
                 <Form.Group controlId="correo">
                   <InputGroup className="mb-3">
                     <InputGroup.Text>@</InputGroup.Text>
                     <Form.Control type="email" placeholder="Mail" />
                   </InputGroup>
                 </Form.Group>
-
                 <Form.Group controlId="clave">
                   <InputGroup className="mb-3">
                     <InputGroup.Text>
@@ -115,11 +143,16 @@ const ModalNewAccount = ({
             setShowCrearNino(false);
           }}
         >
-          <Modal.Header>
-            <Modal.Title>Crea una cuenta para tu hijo</Modal.Title>
+          <Modal.Header closeButton>
+            <Modal.Title
+              style={{ flex: 1, textAlign: "center", color: "white" }}
+            >
+              Crear cuenta niñx
+            </Modal.Title>
           </Modal.Header>
           <Form
             onSubmit={async (e) => {
+              debugger;
               e.preventDefault();
               if (
                 e.target.elements.clave.value !== e.target.elements.clave2.value
@@ -130,8 +163,8 @@ const ModalNewAccount = ({
                   icon: "error",
                 });
               }
-              const result = crearCuentaNino(
-                e.target.elements.correo.value,
+              const result = await crearCuentaNino(
+                e.target.elements.usuario.value,
                 e.target.elements.clave.value
               );
               if (result === "success") setShowCrearNino(false);
@@ -140,40 +173,58 @@ const ModalNewAccount = ({
             <Modal.Body>
               <Container>
                 <Form.Group controlId="usuario">
-                  <Form.Label>Usuario</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Ingresa un usuario para tu hijo"
-                  />
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text>
+                      <FontAwesomeIcon
+                        color="#212529;"
+                        icon={faChild}
+                        title="Usuario"
+                      />
+                    </InputGroup.Text>
+                    <Form.Control
+                      required
+                      type="text"
+                      placeholder="Usuario para el niñx"
+                    />
+                  </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="clave">
-                  <Form.Label>Contraseña</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Contraseña"
-                    minLength="6"
-                  />
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text>
+                      <FontAwesomeIcon
+                        color="#212529;"
+                        icon={faLock}
+                        title="Contraseña"
+                      />
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="password"
+                      minLength="6"
+                      placeholder="Contraseña"
+                    />
+                  </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="clave2">
-                  <Form.Label>Confirmar contraseña</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Confirmar Contraseña"
-                  />
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text>
+                      <FontAwesomeIcon
+                        color="#212529;"
+                        icon={faLock}
+                        title="Contraseña"
+                      />
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="password"
+                      minLength="6"
+                      placeholder="Confirma contraseña"
+                    />
+                  </InputGroup>
                 </Form.Group>
               </Container>
             </Modal.Body>
-            <Modal.Footer>
-              <Button
-                variant="danger"
-                onClick={() => {
-                  setShowCrearNino(false);
-                }}
-              >
-                Cancelar
-              </Button>
-              <Button variant="success" type="submit">
-                Crear
+            <Modal.Footer style={{ justifyContent: "center" }}>
+              <Button className="btn-morado" type="submit">
+                CREAR
               </Button>
             </Modal.Footer>
           </Form>

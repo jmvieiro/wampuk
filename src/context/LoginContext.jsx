@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   createAdult,
   createChild,
+  getAdult,
   loginAdult,
   loginChild,
   resendEmail,
@@ -75,20 +76,27 @@ export const LoginProvider = ({ children }) => {
           });
         }
       });
-      return "success";
+      return {
+        res: "success",
+        usuario: {},
+      };
     }
-    setDatosAdulto(response.user);
-    setAutenticadoAdulto(true);
+    const usuario = await getAdult(response.user.uid);
     Swal.fire({
-      title: "¡Bienvenido " + correo + " a Wampuk!",
+      title: "¡Bienvenido " + usuario.nombre + " a Wampuk!",
       icon: "success",
       confirmButtonText: "ACEPTAR",
     });
-    return "success";
+    setDatosAdulto(usuario);
+    setAutenticadoAdulto(true);
+    return {
+      res: "success",
+      usuario: usuario,
+    };
   };
 
-  const crearCuentaAdulto = async (correo, clave) => {
-    const response = await createAdult(correo, clave);
+  const crearCuentaAdulto = async (clave, usuario) => {
+    const response = await createAdult(clave, usuario);
     if (response) return "success";
     return "error";
   };

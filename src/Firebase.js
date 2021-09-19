@@ -20,3 +20,4 @@ const fire = firebase.initializeApp(firebaseConfig);
 const db = fire.firestore();
 const auth = fire.auth();
 export { db, auth };
+export const usuariosDB = db.collection("usuarios");
