@@ -1,42 +1,43 @@
 import { Button, Col, Row } from "react-bootstrap";
-import { LoginContext } from "../context/LoginContext";
-
 import React, { useContext } from "react";
-import Swal from "sweetalert2";
-import { guardarSuscripcion } from "../firebase/client";
 
-const Suscripcion = ({ title, p1, p2, p3, index, id }) => {
-  const { datosAdulto,autenticadoAdulto } = useContext(LoginContext);
+import { LoginContext } from "../context/LoginContext";
+import Swal from "sweetalert2";
+
+const Suscripcion = ({ title, p1, p2, p3, index }) => {
+  const { datosAdulto, autenticadoAdulto, guardarSuscripcion } =
+    useContext(LoginContext);
 
   const suscription = (tipo) => {
-    if(autenticadoAdulto===true){
-      let tipoS='';
-      if(tipo ===0){
-        tipoS='básica'
-      }else if(tipo===1){
-        tipoS='media'
-      }else if(tipo===2){
-        tipoS='oro'
+    if (autenticadoAdulto) {
+      let aux = null;
+      if (datosAdulto.suscripciones)
+        aux = datosAdulto.suscripciones.find((a) => a.activa === 1);
+      if (aux) {
+        Swal.fire({
+          title: "Ya tienes una suscripción activa.",
+          icon: "error",
+          confirmButtonText: "ACEPTAR",
+        });
+      } else {
+        let tipoS = tipo === 0 ? "básica" : tipo === 1 ? "media" : "oro";
+        const data = {
+          tipoS: tipoS,
+          tipo: 0,
+          usuario: datosAdulto.uid,
+          fechaDesde: new Date().toLocaleDateString(),
+          activa: 1,
+        };
+        guardarSuscripcion(data);
       }
-      const data = {
-        tipo:tipoS,
-        usuario:datosAdulto.uid,
-        fechaI: new Date().toLocaleDateString()
-      }
-      guardarSuscripcion(data);
+    } else {
       Swal.fire({
-        title: "Te has siscrito correctamente",
-        icon: "success",
-        confirmButtonText: "ACEPTAR",
-      });
-    }else{
-      Swal.fire({
-        title: "Debes estar logeado para suscribirte",
+        title: "Debes estar logueado para suscribirte.",
         icon: "error",
         confirmButtonText: "ACEPTAR",
       });
     }
-  }
+  };
 
   let clase =
     index === 0
@@ -47,15 +48,18 @@ const Suscripcion = ({ title, p1, p2, p3, index, id }) => {
   let color =
     index === 0 ? "text-black" : index === 1 ? "text-black" : "text-white";
   return (
-    <Col className={`text-center ${color} rounded-3 ${clase} p-5 m-2`}>
-      <Row className="">
+    <Col
+      className={`text-center ${color} rounded-3 ${clase} p-5 m-2`}
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      <Row>
         <Col>
           <h4>{title}</h4>
         </Col>
       </Row>
       <Row
         className="mt-4"
-        style={{ textAlign: "left", minHeight: 400, marginBottom: 10 }}
+        style={{ flex: 1, textAlign: "left", marginBottom: 10 }}
       >
         <Col>
           <p>{p1}</p>
@@ -69,7 +73,14 @@ const Suscripcion = ({ title, p1, p2, p3, index, id }) => {
       </Row>
       <Row>
         <Col>
-          <Button onClick={()=>{suscription(index)}} className="btn-morado">SUSCRIBIRSE</Button>
+          <Button
+            onClick={() => {
+              suscription(index);
+            }}
+            className="btn-morado"
+          >
+            SUSCRIBIRSE
+          </Button>
         </Col>
       </Row>
     </Col>

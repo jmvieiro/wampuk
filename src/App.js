@@ -10,11 +10,11 @@ import FAQ from "./containers/faq";
 import Infantil from "./containers/infantil";
 import Landing from "./containers/landing";
 import { LoginProvider } from "./context/LoginContext";
+import MiCuenta from "./containers/micuenta";
+import Micofre from "./containers/micofre";
 import NotFound from "./containers/not-found";
 import React from "react";
 import Suscripciones from "./containers/suscripciones";
-import Micuenta from "./containers/micuenta";
-import Micofre from "./containers/micofre";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
             <Route exact path="/suscripciones" component={Suscripciones} />
             <Route exact path="/faq" component={FAQ} />
             <Route exact path="/blog" component={Blog} />
-            <Route exact path="/micuenta" component={Micuenta} />
+            <Route exact path="/micuenta" component={MiCuenta} />
             <Route exact path="/micofre" component={Micofre} />
             <Route path="*" component={NotFound} />
           </Switch>

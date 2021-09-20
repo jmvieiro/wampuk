@@ -54,7 +54,7 @@ const Suscripciones = () => {
       <Container
         fluid
         style={{ marginTop: 77 }}
-        className={"background-adults text-center p-4 py-5 py-lg-4"}
+        className={"background-adults text-center p-3 py-2 py-lg-3"}
       >
         <Row>
           <Col>

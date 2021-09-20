@@ -1,4 +1,4 @@
-import { auth, db, usuariosDB,ninosDB, suscripcionDB } from "../Firebase";
+import { auth, ninosDB, suscripcionDB, usuariosDB } from "../Firebase";
 import { getAuth, sendEmailVerification } from "firebase/auth";
 
 import Swal from "sweetalert2";
@@ -23,8 +23,7 @@ export const loginAdult = async (correo, clave) => {
 };
 
 export const loginChild = async (correo, clave) => {
-  return db
-    .collection("hijos")
+  return ninosDB
     .where("usuario", "==", correo)
     .where("clave", "==", clave)
     .get()
@@ -47,7 +46,7 @@ export const createAdult = async (clave, usuario) => {
       const auth = getAuth();
       sendEmailVerification(auth.currentUser).then(() => {
         usuario.uid = res.user.uid;
-        guardarUsuario(usuario);
+        saveUser(usuario);
       });
       return res;
     })
@@ -78,8 +77,7 @@ export const resendEmail = async () => {
 };
 
 export const createChild = async (correo, clave, adult) => {
-  return db
-    .collection("hijos")
+  return ninosDB
     .add({
       usuario: correo,
       clave: clave,
@@ -97,7 +95,7 @@ export const createChild = async (correo, clave, adult) => {
     });
 };
 
-const guardarUsuario = (usuario) => {
+const saveUser = (usuario) => {
   usuariosDB.add(usuario).catch((res) => {
     Swal.fire({
       title: "No se pudo guardar los datos del adulto.",
@@ -108,24 +106,28 @@ const guardarUsuario = (usuario) => {
 };
 
 export const getAdult = async (id) => {
-  try {
-    const response = await usuariosDB.where("uid", "==", id).get();
-    let usuario = response.docs[0].data();
-    usuario.uidinterno = response.docs[0].id;
-    return usuario;
-  } catch (res) {
-    Swal.fire({
-      title: "No se pudo obtener los datos del adulto.",
-      icon: "error",
+  return await usuariosDB
+    .where("uid", "==", id)
+    .get()
+    .then((response) => {
+      let usuario = response.docs[0].data();
+      usuario.id = response.docs[0].id;
+      return usuario;
+    })
+    .catch((res) => {
+      Swal.fire({
+        title: "No se pudo obtener los datos del adulto.",
+        icon: "error",
+      });
+      console.error("Error writing document: ", res);
     });
-    console.error("Error writing document: ", res);
-  }
 };
-export const setAdult = async (data) => {
+
+export const updateAdult = async (data) => {
   try {
-    const response = await usuariosDB.doc(data.id).update({
-      nombre:data.nombre,
-      apellido:data.apellido
+    await usuariosDB.doc(data.id).update({
+      nombre: data.nombre,
+      apellido: data.apellido,
     });
     return true;
   } catch (res) {
@@ -136,41 +138,42 @@ export const setAdult = async (data) => {
     console.error("Error writing document: ", res);
   }
 };
-export const getChildens = async (id) => {
-  try {
-    const response = await ninosDB.where("padre", "==", id).get();
 
-    return response.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
+export const getChildren = async (id) => {
+  try {
+    return ninosDB
+      .where("padre", "==", id)
+      .get()
+      .then((response) => {
+        return response.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
       });
-    // return response.docs[0].data();
   } catch (res) {
     Swal.fire({
-      title: "No se pudo obtener los datos del adulto.",
+      title: "No se pudo obtener los hijos del adulto.",
       icon: "error",
     });
     console.error("Error writing document: ", res);
   }
 };
 
-export const guardarSuscripcion = (data) => {
+export const saveSuscription = async (data) => {
   suscripcionDB.add(data).catch((res) => {
     Swal.fire({
-      title: "No se pudo guardar los datos del adulto.",
+      title: "No se pudo guardar los datos de la suscripción.",
       icon: "error",
     });
     console.error("Error writing document: ", res);
   });
 };
 
-export const getSuscription = async (id) => {
+export const getSuscriptions = async (id) => {
   try {
     const response = await suscripcionDB.where("usuario", "==", id).get();
-
     return response.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
-      });
-    // return response.docs[0].data();
+      return { id: doc.id, ...doc.data() };
+    });
   } catch (res) {
     Swal.fire({
       title: "No se pudo obtener los datos del adulto.",
@@ -179,4 +182,3 @@ export const getSuscription = async (id) => {
     console.error("Error writing document: ", res);
   }
 };
-

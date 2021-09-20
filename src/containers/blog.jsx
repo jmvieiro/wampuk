@@ -57,7 +57,7 @@ const Blog = () => {
       <Container
         fluid
         style={{ marginTop: 77 }}
-        className={"background-adults text-center p-4 py-5 py-lg-4"}
+        className={"background-adults text-center p-3 py-2 py-lg-3"}
       >
         <Row>
           <Col>
@@ -84,7 +84,7 @@ const Blog = () => {
         <Row style={{ margin: "auto", alignItems: "center" }}>
           {articulos.map((articulo, index) => {
             return (
-              <Col key={index} className="p-0 p-sm-2 m-0 mb-sm-4" md={4}>
+              <Col key={index} className="p-0 p-sm-2 m-0 mb-sm-4" lg={4}>
                 <Articulo
                   id={articulo.id}
                   title={articulo.title}

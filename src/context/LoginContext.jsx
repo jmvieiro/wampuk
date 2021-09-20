@@ -3,9 +3,13 @@ import {
   createAdult,
   createChild,
   getAdult,
+  getChildren,
+  getSuscriptions,
   loginAdult,
   loginChild,
   resendEmail,
+  saveSuscription,
+  updateAdult,
 } from "../firebase/client";
 
 import Swal from "sweetalert2";
@@ -76,23 +80,23 @@ export const LoginProvider = ({ children }) => {
           });
         }
       });
-      return {
-        res: "success",
-        usuario: {},
-      };
+      return "success";
     }
-    const usuario = await getAdult(response.user.uid);
+    let usuario = await getAdult(response.user.uid);
+    usuario = {
+      ...usuario,
+      hijos: await getChildren(response.user.uid),
+      suscripciones: await getSuscriptions(response.user.uid),
+    };
+    setDatosAdulto(usuario);
+    setAutenticadoAdulto(true);
+    console.log(datosAdulto);
     Swal.fire({
       title: "¡Bienvenido " + usuario.nombre + " a Wampuk!",
       icon: "success",
       confirmButtonText: "ACEPTAR",
     });
-    setDatosAdulto(usuario);
-    setAutenticadoAdulto(true);
-    return {
-      res: "success",
-      usuario: usuario,
-    };
+    return "success";
   };
 
   const crearCuentaAdulto = async (clave, usuario) => {
@@ -103,8 +107,40 @@ export const LoginProvider = ({ children }) => {
 
   const crearCuentaNino = async (correo, clave) => {
     await createChild(correo, clave, datosAdulto.uid);
+    const hijos = await getChildren(datosAdulto.uid);
+    const aux = { ...datosAdulto, hijos: hijos };
+    setDatosAdulto(aux);
     Swal.fire({
       title: "¡La cuenta deL niñx ha sido creada correctamente!",
+      confirmButtonText: "ACEPTAR",
+      icon: "success",
+    });
+    return "success";
+  };
+
+  const actualizarUsuario = async (data) => {
+    await updateAdult(data);
+    const aux = {
+      ...datosAdulto,
+      nombre: data.nombre,
+      apellido: data.apellido,
+    };
+    setDatosAdulto(aux);
+    Swal.fire({
+      title: "¡Tus datos han sido actualizados correctamente!",
+      confirmButtonText: "ACEPTAR",
+      icon: "success",
+    });
+    return "success";
+  };
+
+  const guardarSuscripcion = async (data) => {
+    await saveSuscription(data);
+    const suscripciones = await getSuscriptions(datosAdulto.uid);
+    const aux = { ...datosAdulto, suscripciones: suscripciones };
+    setDatosAdulto(aux);
+    Swal.fire({
+      title: "¡La suscripción se ha registrado correctamente!",
       confirmButtonText: "ACEPTAR",
       icon: "success",
     });
@@ -125,6 +161,8 @@ export const LoginProvider = ({ children }) => {
         crearCuentaAdulto,
         crearCuentaNino,
         cerrarSesion,
+        guardarSuscripcion,
+        actualizarUsuario,
       }}
     >
       {children}

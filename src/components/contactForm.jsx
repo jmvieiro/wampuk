@@ -37,9 +37,6 @@ const ContactForm = ({ adult = false }) => {
             </Col>
             <Col lg={3}>
               <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                <p>CONTACTO</p>
-              </Link>
-              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                 <p>MAIL</p>
               </Link>
               <Link to="/" style={{ textDecoration: "none", color: "white" }}>
