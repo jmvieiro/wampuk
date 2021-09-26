@@ -4,7 +4,7 @@ import Loading from "../components/loading";
 import SmoothRender from "react-smooth-render";
 
 const Principal = (props) => {
-  const time = 2000;
+  const time = 1000;
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     window.scrollTo(0, 0);

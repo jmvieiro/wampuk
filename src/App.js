@@ -15,6 +15,7 @@ import Micofre from "./containers/micofre";
 import NotFound from "./containers/not-found";
 import React from "react";
 import Suscripciones from "./containers/suscripciones";
+import DetalleArticulo from "./containers/detalleArticulo";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route exact path="/blog" component={Blog} />
             <Route exact path="/micuenta" component={MiCuenta} />
             <Route exact path="/micofre" component={Micofre} />
+            <Route exact path="/articulo/:id" component={DetalleArticulo} />
             <Route path="*" component={NotFound} />
           </Switch>
         </BrowserRouter>
