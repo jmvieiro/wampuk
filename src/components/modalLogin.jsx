@@ -4,6 +4,8 @@ import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LoginContext } from "../context/LoginContext";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router";
 
 const ModalLogin = ({
   adult,
@@ -13,7 +15,7 @@ const ModalLogin = ({
   setShowLoginNino = null,
 }) => {
   const { loginNino, loginAdulto } = useContext(LoginContext);
-
+  const history = useHistory();
   return (
     <>
       {adult ? (
@@ -37,7 +39,29 @@ const ModalLogin = ({
                 e.target.elements.correo.value,
                 e.target.elements.clave.value
               );
-              if (result === "success") setShowLoginAdulto(false);
+              if (result === "success") {
+                setShowLoginAdulto(false);
+                Swal.fire({
+                  title: "¡Bienvenido a Wampuk!",
+                  icon: "success",
+                  cancelButtonText: `IR A MI CUENTA`,
+                  confirmButtonText: "ACEPTAR",
+                  showCancelButton: true,
+                }).then((result) => {
+                  if (result.isDismissed) history.push("/micuenta");
+                });
+              }
+              if (result === "children") {
+                setShowLoginAdulto(false);
+                Swal.fire({
+                  title: "¡Bienvenido a Wampuk!",
+                  text: " ¿Listo para conocer nuestros cursos? Elige tu suscripción y no te olvides de registrar a tus niñxs para que puedan navegar por la Sección Infantil.",
+                  icon: "success",
+                  confirmButtonText: "REGISTRAR NIÑX",
+                }).then((result) => {
+                  if (result.isConfirmed) history.push("/micuenta");
+                });
+              }
             }}
           >
             <Modal.Body>

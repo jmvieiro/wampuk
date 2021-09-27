@@ -4,11 +4,11 @@ import React, { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 import Swal from "sweetalert2";
 
-const Suscripcion = ({ title, p1, p2, p3, index }) => {
+const Suscripcion = ({ id, title, p1, p2, p3, index }) => {
   const { datosAdulto, autenticadoAdulto, guardarSuscripcion } =
     useContext(LoginContext);
 
-  const suscription = (tipo) => {
+  const suscription = () => {
     if (autenticadoAdulto) {
       let aux = null;
       if (datosAdulto.suscripciones)
@@ -20,10 +20,8 @@ const Suscripcion = ({ title, p1, p2, p3, index }) => {
           confirmButtonText: "ACEPTAR",
         });
       } else {
-        let tipoS = tipo === 0 ? "básica" : tipo === 1 ? "media" : "oro";
         const data = {
-          tipoS: tipoS,
-          tipo: 0,
+          tipo: id,
           usuario: datosAdulto.uid,
           fechaDesde: new Date().toLocaleDateString(),
           activa: 1,
@@ -75,7 +73,7 @@ const Suscripcion = ({ title, p1, p2, p3, index }) => {
         <Col>
           <Button
             onClick={() => {
-              suscription(index);
+              suscription();
             }}
             className="btn-morado"
           >

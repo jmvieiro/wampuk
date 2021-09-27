@@ -26,4 +26,5 @@ const auth = fire.auth();
 export { auth };
 export const usuariosDB = db.collection("usuarios");
 export const ninosDB = db.collection("hijos");
+export const suscripcion_usuarioDB = db.collection("suscripcion_usuario");
 export const suscripcionDB = db.collection("suscripcion");

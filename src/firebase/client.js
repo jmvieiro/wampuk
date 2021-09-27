@@ -1,4 +1,10 @@
-import { auth, ninosDB, suscripcionDB, usuariosDB } from "../Firebase";
+import {
+  auth,
+  ninosDB,
+  suscripcionDB,
+  suscripcion_usuarioDB,
+  usuariosDB,
+} from "../Firebase";
 import { getAuth, sendEmailVerification } from "firebase/auth";
 
 import Swal from "sweetalert2";
@@ -159,7 +165,7 @@ export const getChildren = async (id) => {
 };
 
 export const saveSuscription = async (data) => {
-  suscripcionDB.add(data).catch((res) => {
+  suscripcion_usuarioDB.add(data).catch((res) => {
     Swal.fire({
       title: "No se pudo guardar los datos de la suscripción.",
       icon: "error",
@@ -168,15 +174,33 @@ export const saveSuscription = async (data) => {
   });
 };
 
-export const getSuscriptions = async (id) => {
+export const getSuscriptionsByUser = async (id) => {
   try {
-    const response = await suscripcionDB.where("usuario", "==", id).get();
+    const response = await suscripcion_usuarioDB
+      .where("usuario", "==", id)
+      .where("activa", "==", 1)
+      .get();
     return response.docs.map((doc) => {
       return { id: doc.id, ...doc.data() };
     });
   } catch (res) {
     Swal.fire({
-      title: "No se pudo obtener los datos del adulto.",
+      title: "No se pudo obtener la suscripción del adulto.",
+      icon: "error",
+    });
+    console.error("Error writing document: ", res);
+  }
+};
+
+export const getSuscriptions = async () => {
+  try {
+    const response = await suscripcionDB.orderBy("orden").get();
+    return response.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    });
+  } catch (res) {
+    Swal.fire({
+      title: "No se pudo obtener los datos de las suscripciones.",
       icon: "error",
     });
     console.error("Error writing document: ", res);

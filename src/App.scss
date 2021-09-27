@@ -72,6 +72,10 @@ a {
   background-color: $background-color-morado-claro !important;
 }
 
+.text-morado {
+  color: $background-color-morado !important;
+}
+
 .bg-cyan-claro {
   background-color: $background-color-cyan-claro !important;
 }
@@ -143,6 +147,12 @@ a {
   color: white !important;
   font-size: 20px !important;
 }
+
+.swal2-html-container {
+  color: white !important;
+  font-size: 20px !important;
+}
+
 .swal2-footer {
   text-align: center !important;
 }
@@ -160,3 +170,4 @@ a {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2) !important;
   font-weight: 500 !important;
 }
+

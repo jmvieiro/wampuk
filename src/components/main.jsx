@@ -89,13 +89,16 @@ const Main = ({ adult = false }) => {
                   />
                 </Col>
                 <Col lg={7} style={{ flex: 1, alignSelf: "center" }}>
-                  <Link to="/cursos" style={{ textDecoration: "none", color: "black" }}>
-                  <Section
-                    title={`Nuestros cursos`}
-                    text={`Nuestros cursos se enfocan en desarrollar las habilidades blandas de los niños(as), ten la certeza que tu hijo(a) aprenderá contenido que le servirá para mejorar su vida diaria y contribuir a su desarrollo creativo y emocional. Además nuestros cursos, contienen una mezcla de contenido pregrabado, gamificación y comprobación del aprendizaje. Todos nuestros cursos están pensados con nuestra metodología comprometedora, nuestra idea es aumentar la tasa de cursos terminados.`}
-                    action={"Ver cursos"}
-                    titleCenter={true}
-                  />
+                  <Link
+                    to="/cursos"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <Section
+                      title={`Nuestros cursos`}
+                      text={`Nuestros cursos se enfocan en desarrollar las habilidades blandas de los niños(as), ten la certeza que tu hijo(a) aprenderá contenido que le servirá para mejorar su vida diaria y contribuir a su desarrollo creativo y emocional. Además nuestros cursos, contienen una mezcla de contenido pregrabado, gamificación y comprobación del aprendizaje. Todos nuestros cursos están pensados con nuestra metodología comprometedora, nuestra idea es aumentar la tasa de cursos terminados.`}
+                      action={"Ver cursos"}
+                      titleCenter={true}
+                    />
                   </Link>
                 </Col>
               </Row>
@@ -118,7 +121,10 @@ const Main = ({ adult = false }) => {
             <Container>
               <Row>
                 <Col style={{ alignSelf: "center" }} lg={12}>
-                  <Link to="/suscripciones" style={{ textDecoration: "none", color: "black" }}>
+                  <Link
+                    to="/suscripciones"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
                     <Section
                       title={`Elige tu modelo de suscripción`}
                       text={`Nuestros cursos se enfocan en desarrollar las habilidades blandas de los niños(as), ten la certeza que tu hijo(a) aprenderá contenido que le servirá para mejorar su vida diaria y contribuir a su desarrollo creativo y emocional. Además nuestros cursos, contienen una mezcla de contenido pregrabado, gamificación y comprobación del aprendizaje. Todos nuestros cursos están pensados con nuestra metodología comprometedora, nuestra idea es aumentar la tasa de cursos terminados.`}

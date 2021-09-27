@@ -4,7 +4,7 @@ import {
   createChild,
   getAdult,
   getChildren,
-  getSuscriptions,
+  getSuscriptionsByUser,
   loginAdult,
   loginChild,
   resendEmail,
@@ -34,7 +34,7 @@ export const LoginProvider = ({ children }) => {
 
   const loginNino = async (correo, clave) => {
     const response = await loginChild(correo, clave);
-    if (!response) {
+    if (response.docs.length === 0) {
       Swal.fire({
         title: "Usuario o contraseña incorrectos.",
         confirmButtonText: "ACEPTAR",
@@ -42,7 +42,8 @@ export const LoginProvider = ({ children }) => {
       });
       return "error";
     }
-    setDatosNino(response.docs[0].id);
+    console.log(response);
+    setDatosNino(correo);
     setAutenticadoNino(true);
     Swal.fire({
       title: "¡Bienvenido " + correo + " a Wampuk!",
@@ -86,17 +87,12 @@ export const LoginProvider = ({ children }) => {
     usuario = {
       ...usuario,
       hijos: await getChildren(response.user.uid),
-      suscripciones: await getSuscriptions(response.user.uid),
+      suscripciones: await getSuscriptionsByUser(response.user.uid),
     };
     setDatosAdulto(usuario);
     setAutenticadoAdulto(true);
-    console.log(datosAdulto);
-    Swal.fire({
-      title: "¡Bienvenido " + usuario.nombre + " a Wampuk!",
-      icon: "success",
-      confirmButtonText: "ACEPTAR",
-    });
-    return "success";
+    console.log(usuario);
+    return usuario.hijos.length === 0 ? "children" : "success";
   };
 
   const crearCuentaAdulto = async (clave, usuario) => {
@@ -136,7 +132,7 @@ export const LoginProvider = ({ children }) => {
 
   const guardarSuscripcion = async (data) => {
     await saveSuscription(data);
-    const suscripciones = await getSuscriptions(datosAdulto.uid);
+    const suscripciones = await getSuscriptionsByUser(datosAdulto.uid);
     const aux = { ...datosAdulto, suscripciones: suscripciones };
     setDatosAdulto(aux);
     Swal.fire({
@@ -147,7 +143,29 @@ export const LoginProvider = ({ children }) => {
     return "success";
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const localAdulto = localStorage.getItem("adulto");
+    const localNino = localStorage.getItem("nino");
+    if (!localAdulto) localStorage.setItem("adulto", JSON.stringify([]));
+    else {
+      if (localAdulto.length > 2) {
+        setAutenticadoAdulto(true);
+        setDatosAdulto(JSON.parse(localAdulto));
+      }
+    }
+    if (!localNino) localStorage.setItem("nino", JSON.stringify([]));
+    else {
+      if (localNino.length > 2) {
+        setAutenticadoNino(true);
+        setDatosNino(JSON.parse(localNino));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("adulto", JSON.stringify(datosAdulto));
+    localStorage.setItem("nino", JSON.stringify(datosNino));
+  }, [datosAdulto, datosNino]);
 
   return (
     <LoginContext.Provider
