@@ -4,6 +4,8 @@ import {
   createChild,
   getAdult,
   getChildren,
+  getCursosDelNino,
+  getNino,
   getSuscriptionsByUser,
   loginAdult,
   loginChild,
@@ -42,8 +44,9 @@ export const LoginProvider = ({ children }) => {
       });
       return "error";
     }
-    console.log(response);
-    setDatosNino(correo);
+    let nino = await getNino(response.docs[0].id);
+    nino.cursos = await getCursosDelNino(response.docs[0].id);
+    setDatosNino(nino);
     setAutenticadoNino(true);
     Swal.fire({
       title: "¡Bienvenido " + correo + " a Wampuk!",

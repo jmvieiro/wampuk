@@ -1,6 +1,7 @@
 import {
   auth,
   cursoDB,
+  curso_ninoDB,
   ninosDB,
   suscripcionDB,
   suscripcion_usuarioDB,
@@ -130,6 +131,23 @@ export const getAdult = async (id) => {
     });
 };
 
+export const getNino = async (id) => {
+  return await ninosDB
+    .doc(id)
+    .get()
+    .then((response) => {
+      if (!response.exists) return null;
+      return { id: response.id, ...response.data() };
+    })
+    .catch((res) => {
+      Swal.fire({
+        title: "No se pudo obtener los datos del niño.",
+        icon: "error",
+      });
+      console.error("Error writing document: ", res);
+    });
+};
+
 export const updateAdult = async (data) => {
   try {
     await usuariosDB.doc(data.id).update({
@@ -165,6 +183,25 @@ export const getChildren = async (id) => {
   }
 };
 
+export const getCursosDelNino = async (id) => {
+  try {
+    return curso_ninoDB
+      .where("nino", "==", id)
+      .get()
+      .then((response) => {
+        return response.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+      });
+  } catch (res) {
+    Swal.fire({
+      title: "No se pudo obtener los cursos del niño.",
+      icon: "error",
+    });
+    console.error("Error writing document: ", res);
+  }
+};
+
 export const saveSuscription = async (data) => {
   suscripcion_usuarioDB.add(data).catch((res) => {
     Swal.fire({
@@ -173,6 +210,34 @@ export const saveSuscription = async (data) => {
     });
     console.error("Error writing document: ", res);
   });
+};
+
+export const crearCursoNino = async (data) => {
+  const aux = await curso_ninoDB
+    .where("nino", "==", data.nino)
+    .where("curso", "==", data.curso)
+    .get()
+    .then((response) => {
+      return response.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
+    });
+  if (aux) {
+    return false;
+  } else {
+    curso_ninoDB
+      .add(data)
+      .then((response) => {
+        return true;
+      })
+      .catch((res) => {
+        Swal.fire({
+          title: "No se pudo guardar los datos del curso para el niño.",
+          icon: "error",
+        });
+        console.error("Error writing document: ", res);
+      });
+  }
 };
 
 export const getSuscriptionsByUser = async (id) => {

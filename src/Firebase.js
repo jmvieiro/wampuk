@@ -29,3 +29,4 @@ export const ninosDB = db.collection("hijos");
 export const suscripcion_usuarioDB = db.collection("suscripcion_usuario");
 export const suscripcionDB = db.collection("suscripcion");
 export const cursoDB = db.collection("curso");
+export const curso_ninoDB = db.collection("curso_nino");

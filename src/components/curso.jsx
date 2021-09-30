@@ -2,11 +2,11 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React from "react";
 
-const Curso = ({ id, title, text, img }) => {
+const Curso = ({ id, title, text, img, link = true }) => {
   return (
     <div className="p-2" style={{ maxWidth: 352, border: 0 }}>
       <Card>
-        <Link style={{ textTransform: "none" }} to={`/curso/${id}`}>
+        <Link style={{ textTransform: "none" }} to={link ? `/curso/${id}` : "/realizarCurso"}>
           <Card.Img src={img} />
           <Card.Body
             style={{

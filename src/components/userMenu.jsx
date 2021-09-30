@@ -26,7 +26,7 @@ const UserMenu = ({ adult }) => {
         <span key={1} className={`px-1 ${adult ? "text-black" : "text-white"}`}>
           {autenticadoAdulto
             ? `${datosAdulto.nombre} ${datosAdulto.apellido}`
-            : `${datosNino}`}
+            : `${datosNino.usuario}`}
         </span>,
       ]}
     >
@@ -37,7 +37,7 @@ const UserMenu = ({ adult }) => {
           size="lg"
           className="me-2"
         />
-        {autenticadoAdulto ? datosAdulto.correo : datosNino}
+        {autenticadoAdulto ? datosAdulto.correo : datosNino.usuario}
       </NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item className={`py-1 px-3`}>
