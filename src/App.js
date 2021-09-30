@@ -35,6 +35,7 @@ function App() {
               <Route exact path="/micuenta" component={MiCuenta} />
               <Route exact path="/micofre" component={Micofre} />
               <Route exact path="/articulo/:id" component={DetalleArticulo} />
+              <Route exact path="/curso/:id" component={NotFound} />
               <Route path="*" component={NotFound} />
             </Switch>
           </BrowserRouter>

@@ -1,18 +1,22 @@
 import { Col, Container, Row } from "react-bootstrap";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import ContactForm from "../components/contactForm";
 import Curso from "../components/curso";
 import Footer from "../components/footer";
 import Header from "../components/header";
+import { WampukContext } from "../context/WampukContext";
 import curso from "../images/curso.png";
 
 const Cursos = () => {
+  const { cursos } = useContext(WampukContext);
+
   useEffect(() => {
+    console.log(cursos);
     window.scrollTo(0, 0);
   }, []);
 
-  const cursos = [
+  const cursos1 = [
     {
       id: 1,
       title: "Mindfulness",
@@ -103,7 +107,7 @@ const Cursos = () => {
                 key={index}
                 id={curso.id}
                 title={curso.title}
-                text={curso.text}
+                text={curso.descripcionCorta}
                 img={curso.img}
               />
             );

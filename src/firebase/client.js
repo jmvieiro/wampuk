@@ -1,5 +1,6 @@
 import {
   auth,
+  cursoDB,
   ninosDB,
   suscripcionDB,
   suscripcion_usuarioDB,
@@ -201,6 +202,21 @@ export const getSuscriptions = async () => {
   } catch (res) {
     Swal.fire({
       title: "No se pudo obtener los datos de las suscripciones.",
+      icon: "error",
+    });
+    console.error("Error writing document: ", res);
+  }
+};
+
+export const getCursos = async () => {
+  try {
+    const response = await cursoDB.orderBy("fechaCreacion").get();
+    return response.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    });
+  } catch (res) {
+    Swal.fire({
+      title: "No se pudo obtener los datos de los cursos.",
       icon: "error",
     });
     console.error("Error writing document: ", res);
