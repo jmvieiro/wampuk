@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Adultos from "./containers/adultos";
 import Blog from "./containers/blog";
 import Cursos from "./containers/cursos";
-import DetalleArticulo from "./containers/detalleArticulo";
 import DetalleCurso from "./components/detalleCurso";
 import FAQ from "./containers/faq";
 import Infantil from "./containers/infantil";
@@ -35,7 +34,6 @@ function App() {
               <Route exact path="/blog" component={Blog} />
               <Route exact path="/micuenta" component={MiCuenta} />
               <Route exact path="/micofre" component={MiCofre} />
-              <Route exact path="/articulo/:id" component={DetalleArticulo} />
               <Route exact path="/curso/:id" component={DetalleCurso} />
               <Route path="*" component={NotFound} />
             </Switch>

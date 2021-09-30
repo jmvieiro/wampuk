@@ -1,5 +1,5 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import Curso from "../components/curso";
 import Footer from "../components/footer";
@@ -16,11 +16,8 @@ const MiCofre = () => {
 
   useEffect(() => {
     if (!autenticadoNino) history.push("/infantil");
-    else {
-      console.log(datosNino);
-      window.scrollTo(0, 0);
-    }
-  }, [history]);
+    else window.scrollTo(0, 0);
+  }, [history, autenticadoNino]);
 
   return (
     <>
@@ -77,12 +74,12 @@ const MiCofre = () => {
                       <Curso
                         id={cursos.find((a) => a.id === c.curso).id}
                         title={cursos.find((a) => a.id === c.curso).title}
-                        text={cursos.find((a) => a.id === c.curso).descripcionCorta}
+                        text={
+                          cursos.find((a) => a.id === c.curso).descripcionCorta
+                        }
                         img={cursos.find((a) => a.id === c.curso).img}
                         link={false}
                       />
-
-                    
                     );
                   })}
               </Col>

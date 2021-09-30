@@ -12,7 +12,7 @@ const Curso = ({ id, title, text, img, link = true }) => {
             style={{
               position: "absolute",
               backgroundColor: "#000000",
-              opacity: 0.7,
+              opacity: 0.5,
               color: "white",
               bottom: 0,
               width: "100%",

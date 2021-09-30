@@ -94,7 +94,6 @@ export const LoginProvider = ({ children }) => {
     };
     setDatosAdulto(usuario);
     setAutenticadoAdulto(true);
-    console.log(usuario);
     return usuario.hijos.length === 0 ? "children" : "success";
   };
 

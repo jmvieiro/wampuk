@@ -41,7 +41,7 @@ const Header = ({ adult = false }) => {
     >
       <Container>
         <Navbar.Brand className="p-0">
-          <Link to={adult ? "/adultos" : "/infantil"}>
+          <Link to={window.location.pathname === "/adultos" || window.location.pathname === "/infantil" ? "" : adult ? "/adultos" : "/infantil"}>
             <Image
               src={adult ? logo_wampuk_blanco : logo_wampuk_sf}
               title="Wampuk"

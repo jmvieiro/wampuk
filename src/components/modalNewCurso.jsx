@@ -9,7 +9,6 @@ const ModalNewCurso = ({ showModal, setShowModal, curso }) => {
   const { datosAdulto } = useContext(LoginContext);
   return (
     <>
-      (
       <Modal
         show={showModal}
         onHide={() => {

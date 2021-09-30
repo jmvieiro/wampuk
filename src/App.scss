@@ -174,6 +174,35 @@ a {
 .card-title > p {
   margin: 0 !important;
 }
+
 .card-text > p {
   margin: 0 !important;
+}
+
+#cursoTitle p {
+  margin-bottom: 0px !important;
+}
+
+#pensum {
+  padding: 10px;
+}
+
+#pensum .col-3 {
+  border: 1px solid #F5F5F5;
+  padding: 10px;
+}
+
+#pensum p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+@media (min-width: 750px) {
+  #pensum p {
+    font-size: 16px;
+  }
+
+  #pensum .col-3 {
+    padding: 15px;
+  }
 }

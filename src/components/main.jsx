@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import Card from "./card";
 import Carousel from "./carousel";
 import ContactForm from "./contactForm";
+import { Link } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 import ModalLogin from "./modalLogin";
 import ModalNewAccount from "./modalNewAccount";
@@ -14,7 +15,6 @@ import logo_wampuk_blanco from "../images/logo_wampuk_blanco.png";
 import logo_wampuk_sf from "../images/logo_wampuk_sf.png";
 import paper from "../images/paper.png";
 import tesoro from "../images/tesoro.png";
-import { Link } from "react-router-dom";
 
 const Main = ({ adult = false }) => {
   const { autenticadoNino, autenticadoAdulto } = useContext(LoginContext);
@@ -189,11 +189,21 @@ const Main = ({ adult = false }) => {
               <Row>
                 {autenticadoNino ? (
                   <Col lg={6}>
-                    <Card
-                      title={`MI COFRE`}
-                      text={`Continúa con los cursos que empezaste o redescubre los que ya has terminado.`}
-                      img={tesoro}
-                    />
+                    <Link
+                      style={{
+                        textTransform: "none",
+                        fontSize: "inherit",
+                        color: "inherit",
+                        fontWeight: "inherit",
+                      }}
+                      to="/micofre"
+                    >
+                      <Card
+                        title={`MI COFRE`}
+                        text={`Continúa con los cursos que empezaste o redescubre los que ya has terminado.`}
+                        img={tesoro}
+                      />
+                    </Link>
                   </Col>
                 ) : autenticadoAdulto ? (
                   <Col
@@ -224,18 +234,22 @@ const Main = ({ adult = false }) => {
                     />
                   </Col>
                 )}
-                <Col
-                  lg={6}
-                  onClick={() => {
-                    alert("hola");
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  <Card
-                    title={`EXPLORAR`}
-                    text={`Descrubre diferentes cursos y diviértete aprendiendo.`}
-                    img={compass}
-                  />
+                <Col lg={6} onClick={() => {}} style={{ cursor: "pointer" }}>
+                  <Link
+                    style={{
+                      textTransform: "none",
+                      fontSize: "inherit",
+                      color: "inherit",
+                      fontWeight: "inherit",
+                    }}
+                    to="/explorar"
+                  >
+                    <Card
+                      title={`EXPLORAR`}
+                      text={`Descrubre diferentes cursos y diviértete aprendiendo.`}
+                      img={compass}
+                    />
+                  </Link>
                 </Col>
               </Row>
             </Container>

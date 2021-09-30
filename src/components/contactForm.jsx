@@ -29,7 +29,7 @@ const ContactForm = ({ adult = false }) => {
                 >
                   <Form.Label>Consulta</Form.Label>
                   <Form.Control as="textarea" rows={5} placeholder="Consulta" />
-                  <Button variant="success" className="mt-3 btn-sm">
+                  <Button variant="success" className="mt-3 btn-sm" disabled>
                     ENVIAR
                   </Button>
                 </Form.Group>
