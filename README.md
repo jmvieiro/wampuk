@@ -8,7 +8,7 @@ Wampuk es una plataforma online que ayuda a niños a aprender habilidades blanda
 
 ## Proyecto
 
-- Se desarrolló una landing page para ofrecer el contenido de la plataforma: cursos para niños, blogs, suscripciones, información, preguntas frecuentes y conctacto.
+- Se desarrolló una landing page para ofrecer el contenido de la plataforma: cursos para niños, blogs, suscripciones, información, preguntas frecuentes y contacto.
 - Se permite registrar usuarios adultos, que podrán registrar niños (le crearán un usuario y clave), vender suscripciones.
 
 ## Equipo
