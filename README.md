@@ -16,4 +16,4 @@ Wampuk es una plataforma online que ayuda a niños a aprender habilidades blanda
 - Líder de proyecto: Josué Burbano
 - Diseñadora UX/UI: Paula Yeyati Preiss
 - Desarrollador React: Camilo Cardona https://github.com/camilocardona16/
-- Desarrollador React: Javier vieiro https://github.com/jmvieiro/
+- Desarrollador React: Javier Martín Vieiro https://github.com/jmvieiro/
