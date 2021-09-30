@@ -5,6 +5,7 @@ import ContactForm from "./contactForm";
 import Footer from "./footer";
 import Header from "./header";
 import { LoginContext } from "../context/LoginContext";
+import ModalLogin from "./modalLogin";
 import ModalNewCurso from "./modalNewCurso";
 import { WampukContext } from "../context/WampukContext";
 import avatar from "../images/avatar.png";
@@ -13,9 +14,11 @@ import { useParams } from "react-router-dom";
 const DetalleCurso = () => {
   const { id } = useParams();
   const { cursos } = useContext(WampukContext);
-  const { datosAdulto, autenticadoAdulto } = useContext(LoginContext);
+  const { datosAdulto, autenticadoAdulto, autenticadoNino } = useContext(LoginContext);
   const [curso, setCurso] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  // modals login
+  const [showLoginAdulto, setShowLoginAdulto] = useState(false);
   const clases = ["Clase 1", "Clase 2", "Clase 3", "Clase 4"];
   useEffect(() => {
     const aux = cursos.find((c) => c.id === id);
@@ -144,16 +147,33 @@ const DetalleCurso = () => {
                     className="mt-2 fw-bold border-0 text-morado"
                     style={{
                       textAlign: "left",
-                      fontSize: 15,
+                      fontSize: 22,
                       backgroundColor: "inherit",
                     }}
                   >
                     + Inscribir al niñx
                   </Button>
                 ) : (
-                  <span style={{ fontWeight: "800" }}>
-                    Suscríbete para acceder a este curso y más cursos
-                  </span>
+                  <>
+                    <p style={{ fontWeight: "800" }}>
+                      Suscríbete para acceder a este curso y más cursos
+                    </p>
+                    {!autenticadoNino && !autenticadoAdulto && (
+                      <Button
+                        onClick={() => {
+                          setShowLoginAdulto(true);
+                        }}
+                        className="mt-2 fw-bold border-0 text-morado"
+                        style={{
+                          textAlign: "left",
+                          fontSize: 22,
+                          backgroundColor: "inherit",
+                        }}
+                      >
+                        + Iniciar sesión
+                      </Button>
+                    )}
+                  </>
                 )}
               </Col>
             </Row>
@@ -165,6 +185,11 @@ const DetalleCurso = () => {
         showModal={showModal}
         setShowModal={setShowModal}
         curso={curso}
+      />
+      <ModalLogin
+        adult={true}
+        showLoginAdulto={showLoginAdulto}
+        setShowLoginAdulto={setShowLoginAdulto}
       />
       <ContactForm />
       <Footer />
